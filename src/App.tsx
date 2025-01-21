@@ -61,7 +61,7 @@ export const App = () => {
             20
           </h2>
         </div>
-        <p className="text-primary text-xl mt-4">
+        <p className="text-primary text-xl mt-6">
           A <span className="font-bold">20 day technology detox</span> with{" "}
           <span className="font-bold">6 simple rules</span> with the goal of reconnecting with ourselves.
         </p>
@@ -88,7 +88,7 @@ export const App = () => {
             <strong>#6:</strong> No notifications except messages and phone calls.
           </li>
           <li className="mb-4">
-            <strong>#7:</strong> One 36-hour complete digital unplug day per week.
+            <strong>⭐️</strong> One 36-hour complete digital / technology hiatus unplug day per week.
           </li>
         </ul>
       </Section>
@@ -249,6 +249,8 @@ export const App = () => {
       <Section title="Steps to Get Started">Coming Soon</Section>
 
       <Section title="Themes & Wins">Coming Soon</Section>
+
+      <Section title="What's this 36 hour technology hiatus">Coming Soon</Section>
 
       <footer className="mt-16 text-[#A4853F] text-lg">
         <p>Inspired by various digital detox programs.</p>
