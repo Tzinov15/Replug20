@@ -24,6 +24,7 @@ const NotificationItem = ({ title, description }: { title: string; description: 
 
 export const App = () => {
   const [scrollOffset, setScrollOffset] = useState<number>(0);
+  scrollOffset;
   const [headerIsSticky, setHeaderIsSticky] = useState<boolean>(false);
   useEffect(() => {
     function handleScroll() {
