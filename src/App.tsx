@@ -1,7 +1,7 @@
-import { PropsWithChildren, useEffect, useState } from "react";
+import { PropsWithChildren } from "react";
 
 import "./App.css";
-import logo from "./logo_yellow.png";
+import { Header } from "./Header";
 
 interface SectionProps extends PropsWithChildren {
   title: string;
@@ -22,94 +22,91 @@ const NotificationItem = ({ title, description }: { title: string; description: 
   );
 };
 
-export const App = () => {
-  const [scrollOffset, setScrollOffset] = useState<number>(0);
-  scrollOffset;
-  const [headerIsSticky, setHeaderIsSticky] = useState<boolean>(false);
-  useEffect(() => {
-    function handleScroll() {
-      const offset = window.scrollY;
-      if (offset > 205) {
-        setHeaderIsSticky(true);
-      } else {
-        setHeaderIsSticky(false);
-      }
-      setScrollOffset(offset);
-    }
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
+const Rule = ({ title, description }: { title: string; description: React.ReactNode }) => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#F5F1E0] to-[#DAD2BE] text-center  py-12">
-      <header className={`mb-16 flex items-center flex-col  mt-32 ${headerIsSticky ? "bg-beige-clear" : ""} w-full`}>
-        <div className="flex  items-center justify-center w-full">
-          <img src={logo} className="max-w-[70%]" />
-          <div className="bg-primary min-w-5 min-h-5 h-5 w-5 rounded-full opacity-70" />
-          <h2
-            className="text-primary font-[300] 
-            opacity-70
-                         text-6xl   /* Small screens */
-                         sm:text-7xl  /* Tablets */
-                         md:text-8xl  /* Medium screens */
-                         lg:text-9xl  /* Large screens */
-                         xl:text-[150px]  /* Extra large screens */"
-          >
-            20
-          </h2>
-        </div>
-        <p className="text-primary text-xl mt-6">
-          A <span className="font-bold">20 day technology detox</span> with{" "}
-          <span className="font-bold">6 simple rules</span> with the goal of reconnecting with ourselves.
-        </p>
-      </header>
+    <div className="bg-accent px-6 py-2 rounded-lg text-highlight relative flex items-start justify-start">
+      <div className="flex items-center justify-center  bg-highlight text-accent rounded-full h-8 w-8 min-h-8 min-w-8">
+        {title}
+      </div>{" "}
+      <span className="ml-2">{description}</span>
+    </div>
+  );
+};
+
+export const App = () => {
+  return (
+    <div className="flex flex-col items-start justify-start min-h-screen bg-background text-center relative">
+      <Header />
 
       <Section title="The Rules">
-        <ul className="text-left mx-auto max-w-2xl">
-          <li className="mb-4">
-            <strong>#1:</strong> No phones / computers / screens within 60 minutes of waking up.
-          </li>
-          <li className="mb-4">
-            <strong>#2:</strong> No phones / computers / screens within 60 minutes of going to bed.
-          </li>
-          <li className="mb-4">
-            <strong>#3:</strong> No infinite scrolling / passive consumption.
-          </li>
-          <li className="mb-4">
-            <strong>#4:</strong> No screens during meals.
-          </li>
-          <li className="mb-4">
-            <strong>#5:</strong> No phone usage or checking out of boredom.
-          </li>
-          <li className="mb-4">
-            <strong>#6:</strong> No notifications except messages and phone calls.
-          </li>
-          <li className="mb-4">
-            <strong>⭐️</strong> One 36-hour complete digital / technology hiatus unplug day per week.
-          </li>
-        </ul>
+        <div className="grid grid-cols-1 lg:grid-cols-1 gap-4">
+          <Rule
+            title="1"
+            description={
+              <>
+                No screens within <b>60 minutes of waking up</b>
+              </>
+            }
+          />
+          <Rule
+            title="2"
+            description={
+              <>
+                No screens within <b>60 minutes of bedtime</b>
+              </>
+            }
+          />
+          <Rule
+            title="3"
+            description={
+              <>
+                No screens <b>during meals</b>
+              </>
+            }
+          />
+          <Rule
+            title="4"
+            description={
+              <>
+                No <b>infinitely</b> scrolling
+              </>
+            }
+          />
+          <Rule
+            title="5"
+            description={
+              <>
+                No notifications except <b>calls & messages</b>
+              </>
+            }
+          />
+          <Rule title="6" description="No phone checking out of boredom" />
+        </div>
+        {/* <div className="bg-accent mt-4 px-6 py-2 rounded-lg text-highlight relative flex items-center justify-center">
+          One 36 hour technology hiatus
+        </div> */}
       </Section>
 
       <Section title="The Upside">
-        <ul className="text-left mx-auto max-w-2xl">
-          <li className="mb-4">Better sleep</li>
-          <li className="mb-4">Lower stress levels</li>
-          <li className="mb-4">Lower anxiety levels</li>
-          <li className="mb-4">Deeper connection with nature</li>
-          <li className="mb-4">Deeper connection with others</li>
-          <li className="mb-4">Deeper connection with ourselves</li>
-          <li className="mb-4">Intentionality and purpose</li>
-          <li className="mb-4">Increased motivation</li>
-          <li className="mb-4">Increased emotional regulation</li>
-          <li className="mb-4">Less depression and anxiety</li>
-          <li className="mb-4">Increased focus and willpower</li>
-          <li className="mb-4">Less mood swings</li>
-          <li className="mb-4">Less irritability</li>
-        </ul>
+        <div className="overflow-x-scroll justify-start max-w-[calc(100vw-64px)]  flex items-center gap-x-4">
+          <p className="mb-4 whitespace-nowrap"> Better sleep</p>
+          <p className="mb-4 whitespace-nowrap ">Lower stress levels</p>
+          <p className="mb-4 whitespace-nowrap ">Lower anxiety levels</p>
+          <p className="mb-4 whitespace-nowrap ">Deeper connection with nature</p>
+          <p className="mb-4 whitespace-nowrap ">Deeper connection with others</p>
+        </div>
+        <div className="overflow-x-scroll justify-start max-w-[calc(100vw-64px)]  flex items-center gap-x-4">
+          <p className="mb-4 whitespace-nowrap ">Deeper connection with ourselves</p>
+          <p className="mb-4 whitespace-nowrap ">Intentionality and purpose</p>
+          <p className="mb-4 whitespace-nowrap ">Increased motivation</p>
+          <p className="mb-4 whitespace-nowrap ">Increased emotional regulation</p>
+        </div>
+        <div className="overflow-x-scroll justify-start max-w-[calc(100vw-64px)]  flex items-center gap-x-4">
+          <p className="mb-4 whitespace-nowrap ">Less depression and anxiety</p>
+          <p className="mb-4 whitespace-nowrap ">Increased focus and willpower</p>
+          <p className="mb-4 whitespace-nowrap ">Less mood swings</p>
+          <p className="mb-4 whitespace-nowrap ">Less irritability</p>
+        </div>
       </Section>
 
       <hr className="border-t-2 border-primary w-3/4 mx-auto my-8" />
@@ -159,6 +156,17 @@ export const App = () => {
               title="Short-form content (TikTok, YouTube Reels)"
               description="Encourages a cycle of dopamine-driven, instant gratification-seeking behaviors that distract from deeper focus."
             />
+
+            <p>
+              While many of the above notifications can be positive inducing - your favorite team winning a game, a text
+              from a long ago friend, a bonus at work - they are not predictable, and the goal with this rule is to take
+              ownership over how our day starts.
+            </p>
+            <br />
+            <p>
+              Instead one can go on an early morning walk, do yoga, cook a meal for later in the day, journal, read a
+              book
+            </p>
           </ul>
         </div>
 
@@ -209,27 +217,27 @@ export const App = () => {
           </p>
           <br />
           <p>
-            If setting aside 15–20 minutes for a screen-free meal feels impossible within the 16 waking hours of your
-            day, let this detox be an invitation to reassess your priorities. Over these 20 days, use meals as a time to
+            Setting aside 15–20 minutes for a screen-free meal can feel impossible, especially in a world and age where
+            down time is seen as wasted or eating alone is uncomfortable. Over these 20 days, use meals as a time to
             pause, recharge, and reconnect—with your food, your thoughts, and the present moment.
           </p>
         </div>
 
         <div className="text-left mx-auto max-w-2xl">
           <hr className="border-t-2 border-secondary w-3/4 mx-auto my-8" />
-          <strong>#5:</strong> No phone usage or checking out of boredom
+          <strong>#5:</strong> No phone checking out of boredom
           <i className="text-secondary font-extrabold my-4 block">
             Feel the compulsion; resist the compulsion; take note of what triggered it
           </i>
           <p>
             If you just make a commitment to never pull out your phone unless you need to, you'll be shocked at the
-            tick-like behavior to check when we're borded, on the toilet, waiting in line, waiting for someone, riding
-            in an Uber, riding in an elevator, waiting for the microwave, the list goes on.
+            tick-like behavior to check when we're bored, on the toilet, waiting in line, waiting for someone, riding in
+            an Uber, riding in an elevator, waiting for the microwave, the list goes on.
           </p>
           <br />
           <p>
-            Again, use these 20 days as an opportunity to drop in and start noticing what triggers pulling out the
-            screen, and why.
+            Again, use these 20 days as an opportunity to drop in and start noticing what triggers pull out the screen,
+            and why.
           </p>
         </div>
         <div className="text-left mx-auto max-w-2xl">

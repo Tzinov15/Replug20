@@ -10,7 +10,7 @@
     "cy:generate-tests": "cd cypress && npx tsx generate-cypress-spec-files.ts && cd ..",
     "test": "vitest",
     "test:coverage": "vitest --coverage",
-    "dev": "vite --force",
+    "dev": "vite --force --host",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",

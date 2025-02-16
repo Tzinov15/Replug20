@@ -18,7 +18,9 @@ module.exports = {
         highlight: "#E3C892", // Warm beige
       },
       backgroundImage: {
-        "beige-clear": "linear-gradient(to bottom, #F6F0DC, transparent)",
+        // "beige-clear": "linear-gradient(to bottom, #F6F0DC, transparent)",
+        "beige-clear": "linear-gradient(to bottom, #F6F0DC 0px, #F6F0DC 100px, transparent 100%)",
+        "beige-clear-mb": "linear-gradient(to bottom, #F6F0DC 0px, #F6F0DC 75px, transparent 100%)",
       },
     },
   },
