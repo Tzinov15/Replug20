@@ -4,4 +4,25 @@
 
 html {
   background: #F5F1E0;
+  scroll-behavior: smooth;
+  scroll-margin-top:40px;
 }
+
+@layer base {
+  p {
+    @apply font-sans;
+  }
+}
+
+@layer base {
+  h1,h2,h3,h4,h5,h6 {
+    @apply font-sans;
+  }
+}
+
+@layer base {
+  span {
+    @apply font-inter;
+  }
+}
+

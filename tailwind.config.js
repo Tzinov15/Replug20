@@ -16,6 +16,7 @@ module.exports = {
         background: "#F5F1E0", // Soft cream
         accent: "#556B2F", // Deep forest green
         highlight: "#E3C892", // Warm beige
+        highlightLite: "#CBB887",
       },
       backgroundImage: {
         // "beige-clear": "linear-gradient(to bottom, #F6F0DC, transparent)",

@@ -20,13 +20,9 @@ export const Header = () => {
     };
   }, []);
 
-  const headerStartsResizing = scrollOffset > 144;
-
   return (
     <>
-      <header
-        className={`bg-transparent z-50  sticky top-0 pt-4 mt-36 lg:mt-36 flex items-center flex-col  ${headerStartsResizing ? "bg-beige-clear-mb lg:bg-beige-clear" : ""} w-full `}
-      >
+      <header className={`bg-transparent z-50  top-0 pt-4 mt-4 lg:mt-0 flex items-center flex-col  w-full `}>
         <div
           style={{
             transformOrigin: "top",
@@ -34,10 +30,10 @@ export const Header = () => {
           }}
           className={`flex flex-col  items-center justify-center w-full py-4 border-b border-b-primary border-opacity-50 `}
         >
-          <img src={logo} className={`max-w-[90%] lg:max-w-[70%]`} />
+          <img src={logo} className={`max-w-[90%] lg:max-w-[40%]`} />
           <p className="text-primary text-xl mt-6">
-            A <span className="font-bold">20 day technology detox</span> with{" "}
-            <span className="font-bold">6 simple rules</span>
+            A <p className="inline font-bold">20 day technology detox</p>
+            <br /> with <p className="inline font-bold text-accent">6 simple rules</p>
           </p>
         </div>
       </header>

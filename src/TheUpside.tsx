@@ -1,4 +1,4 @@
-import { Section } from "./App";
+import { Section } from "./Content";
 
 export const TheUpside = () => {
   return (
