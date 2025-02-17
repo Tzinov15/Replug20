@@ -5,7 +5,7 @@
 html {
   background: #F5F1E0;
   scroll-behavior: smooth;
-  scroll-margin-top:40px;
+  scroll-margin-top:58px;
 }
 
 @layer base {

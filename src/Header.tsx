@@ -22,7 +22,7 @@ export const Header = () => {
 
   return (
     <>
-      <header className={`bg-transparent z-50  top-0 pt-4 mt-4 lg:mt-0 flex items-center flex-col  w-full `}>
+      <header className={`bg-transparent z-50  top-0 pt-4 mt-0 lg:mt-0 flex items-center flex-col  w-full `}>
         <div
           style={{
             transformOrigin: "top",

@@ -1,5 +1,5 @@
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
-import { PropsWithChildren, useEffect, useState } from "react";
+import { PropsWithChildren, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 
 import { Header } from "./Header";
@@ -57,17 +57,21 @@ const RuleLight = ({
   description,
   anchor,
   onClick,
+  scrolledPast,
 }: {
   title: string;
   description: React.ReactNode;
   content?: React.ReactNode;
   anchor: string;
   onClick?: () => void;
+  scrolledPast?: boolean;
 }) => {
   return (
     <a className="block" href={anchor} onClick={onClick}>
       <div className="w-full flex items-center">
-        <div className="flex items-center justify-center mr-2  bg-highlight text-accent rounded-full h-6 w-6 min-h-6 left-4 min-w-6">
+        <div
+          className={`flex items-center justify-center mr-2  ${scrolledPast ? "bg-secondary text-woodland-400" : "bg-primary text-highlight"} transition-all duration-500 rounded-full h-6 w-6 min-h-6 left-4 min-w-6`}
+        >
           <b className="text-xs">{title}</b>
         </div>{" "}
         <div className="text-accent rounded-lg text-sm font-extrabold  lg:min-h-10 flex items-center justify-start lg:justify-start w-full lg:w-full ">
@@ -78,16 +82,19 @@ const RuleLight = ({
   );
 };
 
-const Accordion = () => {
+interface AccordionProps {
+  percentScrolled: number;
+  markers: { title: string; percentageDownThePage: number }[];
+}
+const Accordion: React.FC<AccordionProps> = ({ percentScrolled, markers }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const closeAccordion = () => setIsOpen(false);
 
   return (
-    <div className="bg-background w-full z-50 shadow-lg px-2">
-      {/* Header */}
+    <div className="bg-background w-full z-50 shadow-lg">
       <div
-        className="flex h-14 cursor-pointer items-center z-50 w-full justify-between p-4 bg-background  rounded-lg"
+        className="flex h-16 cursor-pointer items-center z-50 w-full justify-between p-4 bg-background  rounded-lg"
         onClick={() => setIsOpen(!isOpen)}
       >
         <img src={logo} className="max-w-[50%] z-50" />
@@ -97,25 +104,45 @@ const Accordion = () => {
         />
       </div>
 
-      {/* Content */}
-      <div className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-[400px]" : "max-h-0"} `}>
+      <div className={`overflow-hidden transition-all duration-500 ${isOpen ? "max-h-[400px]" : "max-h-0"} px-2`}>
         <div className="mb-2 gap-y-4 flex flex-col">
           <RuleLight
+            scrolledPast={percentScrolled > markers[0].percentageDownThePage}
             anchor="#rulenumber1"
             title="1"
             description="No screens within 60 minutes"
             onClick={closeAccordion}
           />
-          <RuleLight anchor="#rulenumber2" title="2" description="No screens during meals" onClick={closeAccordion} />
           <RuleLight
+            scrolledPast={percentScrolled > markers[1].percentageDownThePage}
+            anchor="#rulenumber2"
+            title="2"
+            description="No screens during meals"
+            onClick={closeAccordion}
+          />
+          <RuleLight
+            scrolledPast={percentScrolled > markers[2].percentageDownThePage}
             anchor="#rulenumber3"
             title="3"
             description="Only calls and messages for notifications"
             onClick={closeAccordion}
           />
-          <RuleLight anchor="#rulenumber4" title="4" description="No doom scrolling apps" onClick={closeAccordion} />
-          <RuleLight anchor="#rulenumber5" title="5" description="No idle phone usage" onClick={closeAccordion} />
           <RuleLight
+            scrolledPast={percentScrolled > markers[3].percentageDownThePage}
+            anchor="#rulenumber4"
+            title="4"
+            description="No doom scrolling apps"
+            onClick={closeAccordion}
+          />
+          <RuleLight
+            scrolledPast={percentScrolled > markers[4].percentageDownThePage}
+            anchor="#rulenumber5"
+            title="5"
+            description="No idle phone usage"
+            onClick={closeAccordion}
+          />
+          <RuleLight
+            scrolledPast={percentScrolled > markers[5].percentageDownThePage}
             anchor="#rulenumber6"
             title="6"
             description="No screens within 60 minutes of bedtime"
@@ -123,12 +150,60 @@ const Accordion = () => {
           />
         </div>
       </div>
+
+      <div className="w-full h-[3px] bg-highlight relative flex items-center">
+        <div
+          className="h-[3px] bg-primary absolute left-0 "
+          style={{
+            width: `${percentScrolled * 100}%`,
+          }}
+        />
+        {markers.map((marker) => (
+          <div
+            key={marker.title}
+            className={`transition-all absolute h-5 w-5 duration-500 ${marker.percentageDownThePage < percentScrolled ? "bg-secondary" : "bg-primary"}  rounded-full flex items-center justify-center shadow-lg`}
+            style={{
+              left: `${marker.percentageDownThePage * 100}%`,
+              // top: "-1px",
+            }}
+          >
+            <span
+              className={`text-xs transition-all duration-500 ${marker.percentageDownThePage < percentScrolled ? "text-woodland-200" : "text-highlight"}   font-bold`}
+            >
+              {marker.title}
+            </span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
 
 export const Content = () => {
   const [scrollOffset, setScrollOffset] = useState<number>(0);
+
+  const firstRuleRef = useRef<HTMLDivElement>(null);
+  const secondRuleRef = useRef<HTMLDivElement>(null);
+  const thirdRuleRef = useRef<HTMLDivElement>(null);
+  const fourthRuleRef = useRef<HTMLDivElement>(null);
+  const fifthRuleRef = useRef<HTMLDivElement>(null);
+  const sixthRuleRef = useRef<HTMLDivElement>(null);
+
+  const firstRulePercentageOfPageDown = (firstRuleRef.current?.offsetTop || 0) / document.body.scrollHeight;
+  const secondRulePercentageOfPageDown = (secondRuleRef.current?.offsetTop || 0) / document.body.scrollHeight;
+  const thirdRulePercentageOfPageDown = (thirdRuleRef.current?.offsetTop || 0) / document.body.scrollHeight;
+  const fourthRulePercentageOfPageDown = (fourthRuleRef.current?.offsetTop || 0) / document.body.scrollHeight;
+  const fifthRulePercentageOfPageDown = (fifthRuleRef.current?.offsetTop || 0) / document.body.scrollHeight;
+  const sixthRulePercentageOfPageDown = (sixthRuleRef.current?.offsetTop || 0) / document.body.scrollHeight;
+
+  const accordionMarkers = [
+    { title: "1", percentageDownThePage: firstRulePercentageOfPageDown },
+    { title: "2", percentageDownThePage: secondRulePercentageOfPageDown },
+    { title: "3", percentageDownThePage: thirdRulePercentageOfPageDown },
+    { title: "4", percentageDownThePage: fourthRulePercentageOfPageDown },
+    { title: "5", percentageDownThePage: fifthRulePercentageOfPageDown },
+    { title: "6", percentageDownThePage: sixthRulePercentageOfPageDown },
+  ];
 
   const matches = useMediaQuery("(min-width: 1024px)");
 
@@ -146,10 +221,15 @@ export const Content = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const totalPageHeight = document.body.scrollHeight - window.innerHeight;
+
+  const percentageOfScreenVerticallyScrolled = scrollOffset / totalPageHeight;
+
   return (
     <div className="flex flex-col items-start justify-start min-h-screen bg-background text-center ">
       <div
-        className={`fixed z-50 top-0 w-full lg:w-fit flex flex-col  ${scrollOffset > headerStickyCutoff ? "opacity-100" : "opacity-0"} transition-all`}
+        className={`fixed z-50 top-0 w-full lg:w-fit flex flex-col  ${scrollOffset > headerStickyCutoff ? "opacity-100" : "opacity-0"} duration-500 transition-all`}
       >
         {matches ? (
           <div className="p-4">
@@ -162,7 +242,7 @@ export const Content = () => {
             <RuleLight anchor="#rulenumber6" title="6" description="No screens within 60 minutes of bedtime" />
           </div>
         ) : (
-          <Accordion />
+          <Accordion markers={accordionMarkers} percentScrolled={percentageOfScreenVerticallyScrolled} />
         )}
       </div>
       <Header />
@@ -228,9 +308,11 @@ export const Content = () => {
         presence and purpose
       </h3>
 
+      <hr className="border-t-2 border-primary w-3/4 mx-auto my-8" />
+
       <Section title="The Rules Explained">
         <div className="text-left mx-auto max-w-2xl">
-          <strong id="rulenumber1" className="scroll-mt-16" />
+          <strong id="rulenumber1" ref={firstRuleRef} className="scroll-mt-20" />
           <Rule
             title="1"
             anchor="#rulenumber1"
@@ -297,7 +379,7 @@ export const Content = () => {
 
         <hr className="border-t-2 border-highlight w-[90vw] -ml-12 left-0 mx-auto my-8" />
         <div className="text-left mx-auto max-w-2xl">
-          <strong id="rulenumber2" className="scroll-mt-16" />
+          <strong id="rulenumber2" ref={secondRuleRef} className="scroll-mt-20" />
           <Rule anchor="#rulenumber2" title="2" description={<>No screens during meals</>} />
           <p>
             Treat each meal as an opportunity to slow down and surface from the rush that is constantly being on all the
@@ -330,7 +412,7 @@ export const Content = () => {
 
         <hr className="border-t-2 border-highlight w-[90vw] -ml-12 left-0 mx-auto my-8" />
         <div className="text-left mx-auto max-w-2xl">
-          <strong id="rulenumber3" className="scroll-mt-16" />
+          <strong id="rulenumber3" ref={thirdRuleRef} className="scroll-mt-20" />
           <Rule anchor="#rulenumber3" title="3" description={<>Only calls and messages for notifications</>} />
           <p>Treat these 20 days as an experiment in reducing notification overload and seeing what happens....</p>
           <p>
@@ -343,7 +425,7 @@ export const Content = () => {
 
         <hr className="border-t-2 border-highlight w-[90vw] -ml-12 left-0 mx-auto my-8" />
         <div className="text-left mx-auto max-w-2xl">
-          <strong id="rulenumber4" className="scroll-mt-16" />
+          <strong id="rulenumber4" ref={fourthRuleRef} className="scroll-mt-20" />
           <Rule anchor="#rulenumber4" title="4" description={<>No doom-scrolling apps</>} />
           <p>Treat...</p>
           <p>
@@ -364,7 +446,7 @@ export const Content = () => {
 
         <hr className="border-t-2 border-highlight w-[90vw] -ml-12 left-0 mx-auto my-8" />
         <div className="text-left mx-auto max-w-2xl">
-          <strong id="rulenumber5" className="scroll-mt-16" />
+          <strong id="rulenumber5" ref={fifthRuleRef} className="scroll-mt-20" />
           <Rule anchor="#rulenumber5" title="5" description={<>No idle phone usage</>} />
           Many of us have developed a tick-like habit of reaching for our phones during every idle moment in our day and
           getting lost in the digital stimulus at our fingertips. This rule is about breaking that automatic response
@@ -402,7 +484,7 @@ export const Content = () => {
 
         <hr className="border-t-2 border-highlight w-[90vw] -ml-12 left-0 mx-auto my-8" />
         <div className="text-left mx-auto max-w-2xl">
-          <strong id="rulenumber6" className="scroll-mt-16" />
+          <strong id="rulenumber6" ref={sixthRuleRef} className="scroll-mt-20" />
           <Rule anchor="#rulenumber6" title="6" description={<>No screens within 60 minutes of bedtime</>} />
           <p>
             Treat the last 60 minutes of your day as relaxing and restorative. Again avoid all forms of digital

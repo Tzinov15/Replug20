@@ -17,6 +17,19 @@ module.exports = {
         accent: "#556B2F", // Deep forest green
         highlight: "#E3C892", // Warm beige
         highlightLite: "#CBB887",
+        woodland: {
+          50: "#f6faeb",
+          100: "#eaf3d4",
+          200: "#d6e7af",
+          300: "#bbd77f",
+          400: "#9fc457",
+          500: "#82a939",
+          600: "#64862a",
+          700: "#4d6724",
+          800: "#445924",
+          900: "#374720",
+          950: "#1b260d",
+        },
       },
       backgroundImage: {
         // "beige-clear": "linear-gradient(to bottom, #F6F0DC, transparent)",
