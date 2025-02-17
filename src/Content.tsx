@@ -1,7 +1,7 @@
 import { PropsWithChildren, useEffect, useRef, useState } from "react";
 
+import { FAQItem, QuestionsAndAnswers } from "./FAQItem";
 import { Splash } from "./Splash";
-import { TheUpside } from "./TheUpside";
 
 interface SectionProps extends PropsWithChildren {
   title: string;
@@ -12,6 +12,25 @@ export const Section: React.FC<SectionProps> = ({ title, children }) => (
     <div className="text-lg text-gray-700 leading-relaxed">{children}</div>
   </div>
 );
+
+export const Heading = ({ title }: { title: string }) => {
+  return (
+    <div className="mt-6 mb-1 bg-primary  mx-auto text-center px-6 py-2 rounded-xl lg:px-10">
+      <h2 className="text-xl font-bold text-highlight mb-0">{title}</h2>
+    </div>
+  );
+};
+
+export const FAQHeading = ({ title }: { title: string }) => {
+  return (
+    <div className="mt-6 mb-1 bg-lotus-500  mx-auto text-center px-6 py-2 rounded-xl lg:px-10">
+      <h2 className="text-xl font-bold text-lotus-300 mb-0">{title}</h2>
+    </div>
+    // <div className="mt-6 mb-1 bg-blue-smoke-500  mx-auto text-center px-6 py-2 rounded-xl lg:px-10">
+    //   <h2 className="text-xl font-bold text-blue-smoke-300 mb-0">{title}</h2>
+    // </div>
+  );
+};
 
 const NotificationItem = ({ title, description }: { title: string; description: string }) => {
   return (
@@ -197,7 +216,7 @@ export const Content = () => {
         <hr className="border-t-2 border-highlight w-[90vw] -ml-12 left-0 mx-auto my-8" />
         <div className="text-left mx-auto max-w-2xl">
           <strong id="rulenumber3" ref={thirdRuleRef} className="scroll-mt-20" />
-          <Rule anchor="#rulenumber3" title="3" description={<>Only calls and messages for notifications</>} />
+          <Rule anchor="#rulenumber3" title="3" description={<>No notifications except calls, messages, work</>} />
           <p className="mt-8">
             Treat these 20 days as an experiment in reducing notification overload and relaxing in longer periods of
             uninterrupted time.
@@ -267,11 +286,13 @@ export const Content = () => {
           <br />
           <b>Examples of passive phone usage</b>
           <br />
-          <ul className="list-disc">
+          <ul className="list-disc ml-4 marker:text-primary">
             <li>Checking your phone while waiting in line at Chipotle</li>
             <li>Scrolling while heating up food in the microwave</li>
             <li>Mindlessly browsing while sitting on the porcelain throne in the bathroom</li>
             <li>Opening your phone while in the elevator</li>
+            <li>Checking your phone while at a red light or in traffic</li>
+            <li>Opening your phone as soon as the commercial break starts</li>
           </ul>
           <br />
           <p>
@@ -281,24 +302,25 @@ export const Content = () => {
           <br />
           <p>
             An important thing to note about this rule:{" "}
-            <b>
+            <b className="text-primary">
               it is highly, highly likely that you will slip up on at least one occasion, especially in the beginning,
               on this rule.
             </b>{" "}
             Like any other deeply ingrained behavior, it will take some time to go through the awareness, interrupt, and
             modify cycle of this habit, and that's ok.
           </p>
+          <br />
           <p>
             Treat these 20 days as an opportunity to drop in and start noticing what triggers pull out the screen, and
             why.
           </p>
         </div>
 
-        <hr className="border-t-2 border-highlight w-[90vw] -ml-12 left-0 mx-auto my-8" />
+        <hr className="border-t-2 border-highlight w-[100vw] -ml-12 left-0 mx-auto my-8" />
         <div className="text-left mx-auto max-w-2xl">
           <strong id="rulenumber6" ref={sixthRuleRef} className="scroll-mt-20" />
           <Rule anchor="#rulenumber6" title="6" description={<>No screens within 60 minutes of bedtime</>} />
-          <p>
+          <p className="mt-8">
             Treat the last 60 minutes of your day as relaxing and restorative. Again avoid all forms of digital
             engagement to carve out a sanctuary of an evening before bed.
           </p>
@@ -314,38 +336,82 @@ export const Content = () => {
 
       <Section title="Steps to Get Started">
         <div className="flex flex-col items-start justify-start">
+          <Heading title="Pick a Start Date" />
+          <p className="mt-4">
+            Look at your calendar, and decide when it makes most sense to start the 20 day detox. Keep in mind existing
+            committiments that come into conflict with the rules. Pick a start date, mark it on your calendar
+          </p>
+          <Heading title="Prepare your Phone" />
+          <br />
           <p>
-            1.) Look at your calendar, and decide when it makes most sense to start the 20 day detox. Keep in mind
-            existing committiments that come into conflict with the rules. Pick a start date, mark it on your calendar
+            Set aside time the day before you start to delete unneccessary apps, update notification settings,
+            communicate with any online connections (dating apps, social media DMs, etc) that you will be unavailable
+            over those platforms
+          </p>
+          <br />
+          <Heading title="Communicate your Commitment" />
+          <p className="mt-4">
+            Tell your friends and family what you will be doing and why, setup in person hangs, and invite friends to
+            come along and join you! Some will, some will consider it, and some will fight it.
+          </p>
+
+          <br />
+          <p>
+            {" "}
+            This is where it is likely you will get push back; people will say you're crazy, people will project their
+            own insecurities onto you, people will say you're being dramatic, people will say this is over the top. This
+            is normal. Stick to your guns and recognize you're doing something for yourself.{" "}
           </p>
           <br />
           <p>
-            2.) Set aside 30-60 minutes the day before you start to delete unneccessary apps, update notification
-            settings, communicate with any online connections (dating apps, social media DMs, etc) that you will be
-            unavailable over those platforms
+            <i className="text-primary font-bold">
+              "Whenever you find yourself on the side of the majority, it is time to pause and reflect"
+            </i>{" "}
+            <p className="inline ml-2">- Mark Twain</p>
+          </p>
+          <br />
+
+          <Heading title="Identify your Why" />
+          <p className="mt-4">
+            As confident as we are in how transformative these 20 days will be, we are equally as confident in their
+            challenging nature.{" "}
           </p>
           <br />
           <p>
-            3.) Communicate with friends and family what you will be doing and why, setup in person hangs, and invite
-            friends to come along and join you
+            Our phone habits have become so deeply and profoundly ingrained in us that shifting them takes momentous
+            willpower. Like any other addiction, it will get harder before it gets better. Spend some time reflecting on
+            why you're doing this.
           </p>
           <br />
-          <p>4.) Identify why you are doing this. Some benefits people have reported are </p>
+
+          <Heading title="Write to your future self" />
+          <p className="mt-4">
+            Take inventory of where you currently are at in terms of sleep quality, average anxiety levels throughout
+            the day, current screen time, motivation levels, and overall sense of connection with yourself and others.
+          </p>
           <br />
-          <p>
-            5.) Write yourself a letter to be opened in 20 days. Take inventory of where you currently are at in terms
-            of sleep quality, average anxiety levels throughout the day, current screen time
+          <p className="mt-4">
+            Make a commitment to your future self - the future self that could be slightly less anxious, slightly more
+            present, and slightly more intentional - that you will try your best to follow these 6 rules over the next
+            20 days.
           </p>
           <br />
         </div>
       </Section>
-      <Section title="Do I need to buy anything?">
+      {/* <Section title="Do I need to buy anything?">
         No! However, some people have said the following things are useful and enhance their experiences: a separate
         alarm clock, journals, physical paper calendars, printers, books,
-      </Section>
+      </Section> */}
 
       <Section title="FAQ">
-        <p>How do I stay social while remaining off of social media?</p>
+        <FAQHeading title="FAQ" />
+
+        <ul className="list-disc ml-0 marker:text-tertiary">
+          {QuestionsAndAnswers.map((qa) => (
+            <FAQItem key={qa.question} question={qa.question} answer={qa.answer} />
+          ))}
+        </ul>
+        {/* <p>How do I stay social while remaining off of social media?</p>
         <p>Why 20 days?</p>
         <p>
           I've struggled deeply in the past with loneliness and social isolation and I'm afraid I will relapse into dark
@@ -357,17 +423,19 @@ export const Content = () => {
         <p>What benefits can I expect to see?</p>
         <p>What if I see no benefits at the end?</p>
         <p>What about work notificaitons? I NEED to be on slack!</p>
-        <p>What's wrong with X? I feel like you're personally attacking the usage of X without any grounds</p>
+        <p>What's wrong with X? I feel like you're personally attacking the usage of X without any grounds</p> */}
       </Section>
 
-      <Section title="Questions?">Contact us at</Section>
-      <TheUpside />
+      <Section title="Questions?">
+        Contact us at <code className="block font-bold text-primary text-xl p-4 ">questions@replug20.com</code>
+      </Section>
+      {/* <TheUpside /> */}
 
       {/* <Section title="What's this 36 hour technology hiatus">Coming Soon</Section> */}
 
-      <footer className="mt-16 text-[#A4853F] text-lg">
+      {/* <footer className="mt-16 text-[#A4853F] text-lg">
         <p>Inspired by various digital detox programs.</p>
-      </footer>
+      </footer> */}
     </div>
   );
 };

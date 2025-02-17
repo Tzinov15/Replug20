@@ -24,7 +24,7 @@ const RuleLight = ({
     <a className="block" href={anchor} onClick={onClick}>
       <div className="w-full flex items-center">
         <div
-          className={`flex items-center justify-center mr-2  ${scrolledPast ? "bg-secondary text-woodland-400" : "bg-primary text-highlight"} transition-all duration-500 rounded-full h-6 w-6 min-h-6 left-4 min-w-6`}
+          className={`flex items-center justify-center mr-1  ${scrolledPast ? "bg-secondary text-woodland-400" : "bg-primary text-highlight"} transition-all duration-500 rounded-full h-6 w-6 min-h-6 left-4 min-w-6`}
         >
           <b className="text-xs">{title}</b>
         </div>{" "}
@@ -90,14 +90,14 @@ const Accordion: React.FC<AccordionProps> = ({ percentScrolled, markers }) => {
             scrolledPast={percentScrolled > markers[2].percentageDownThePage}
             anchor="#rulenumber3"
             title="3"
-            description="Only calls and messages for notifications"
+            description="No notifications except calls, messages, work"
             onClick={closeAccordion}
           />
           <RuleLight
             scrolledPast={percentScrolled > markers[3].percentageDownThePage}
             anchor="#rulenumber4"
             title="4"
-            description="No infinite scrolling apps"
+            description="No infinitely scrolling apps"
             onClick={closeAccordion}
           />
           <RuleLight
@@ -127,17 +127,30 @@ const Accordion: React.FC<AccordionProps> = ({ percentScrolled, markers }) => {
         {markers.map((marker) => (
           <div
             key={marker.title}
-            className={`transition-all absolute h-5 w-5 duration-500 ${marker.percentageDownThePage < percentScrolled ? "bg-accent" : "bg-primary"}  rounded-full flex items-center justify-center shadow-lg`}
+            className="py-6 absolute flex items-center justify-center"
             style={{
               left: `${marker.percentageDownThePage * 100}%`,
               // top: "-1px",
             }}
           >
-            <span
-              className={`text-xs transition-all duration-500 ${marker.percentageDownThePage < percentScrolled ? "text-woodland-200" : "text-highlight"}   font-bold`}
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                window.scrollTo({
+                  top: document.body.scrollHeight * marker.percentageDownThePage - 80,
+                  behavior: "smooth",
+                });
+              }}
+              key={marker.title}
+              className={`transition-all absolute h-6 w-6 duration-500 ${marker.percentageDownThePage < percentScrolled ? "bg-accent" : "bg-primary"}  rounded-full flex items-center justify-center shadow-lg`}
             >
-              {marker.title}
-            </span>
+              <span
+                className={`text-xs transition-all duration-500 ${marker.percentageDownThePage < percentScrolled ? "text-woodland-200" : "text-highlight"}   font-bold`}
+              >
+                {marker.title}
+              </span>
+            </div>
           </div>
         ))}
       </div>
@@ -178,8 +191,8 @@ export const Splash: React.FC<SplashProps> = ({ markers, percentageOfScreenVerti
             <h2 className="text-2xl font-bold text-[#A4853F] mb-0">The Rules</h2>
             <RuleLight anchor="#rulenumber1" title="1" description="No screens within 60 minutes" />
             <RuleLight anchor="#rulenumber2" title="2" description="No screens during meals" />
-            <RuleLight anchor="#rulenumber3" title="3" description="Only calls and messages for notifications" />
-            <RuleLight anchor="#rulenumber4" title="4" description="No infinite scrolling apps" />
+            <RuleLight anchor="#rulenumber3" title="3" description="No notifications except calls, messages, work" />
+            <RuleLight anchor="#rulenumber4" title="4" description="No infinitely scrolling apps" />
             <RuleLight anchor="#rulenumber5" title="5" description="No idle phone usage" />
             <RuleLight anchor="#rulenumber6" title="6" description="No screens within 60 minutes of bedtime" />
           </div>
@@ -209,7 +222,7 @@ export const Splash: React.FC<SplashProps> = ({ markers, percentageOfScreenVerti
               </>
             }
           />
-          <Rule anchor="#rulenumber3" title="3" description={<>Only calls and messages for notifications</>} />
+          <Rule anchor="#rulenumber3" title="3" description={<>No notifications except calls, messages, work</>} />
           <Rule
             anchor="#rulenumber4"
             title="4"
@@ -243,9 +256,10 @@ export const Splash: React.FC<SplashProps> = ({ markers, percentageOfScreenVerti
       <hr className="border-t-2 border-primary w-3/4 mx-auto my-8" />
 
       <h3 className="text-secondary text-xl my-12 mx-16 font-bold">
-        Replug is about regaining agency over your <p className="inline text-secondary">time</p> and{" "}
-        <p className="inline text-accent">mental health</p> by trading <p className="inline line-through">screens</p>{" "}
-        and <p className="inline line-through">notifications</p> for presence and intention. <br />
+        Replug is about regaining agency over your <p className="inline text-primary">time</p> and{" "}
+        <p className="inline text-primary">mental health</p> by trading <p className="inline line-through">screens</p>{" "}
+        and <p className="inline line-through">notifications</p> for <b className="text-primary">presence</b> and
+        <b className="text-primary"> intention</b>. <br />
         <br />
         Eliminate the noise for 20 days, and then with space, choose which habits you want to bring back.
       </h3>
