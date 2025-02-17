@@ -25,7 +25,7 @@ export const Header = () => {
   return (
     <>
       <header
-        className={`bg-transparent z-50  sticky top-0 pt-4 mt-36 flex items-center flex-col  ${headerStartsResizing ? "bg-beige-clear-mb lg:bg-beige-clear" : ""} w-full `}
+        className={`bg-transparent z-50  sticky top-0 pt-4 mt-36 lg:mt-36 flex items-center flex-col  ${headerStartsResizing ? "bg-beige-clear-mb lg:bg-beige-clear" : ""} w-full `}
       >
         <div
           style={{
