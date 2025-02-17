@@ -403,7 +403,7 @@ export const Content = () => {
         alarm clock, journals, physical paper calendars, printers, books,
       </Section> */}
 
-      <Section title="FAQ">
+      <Section title="">
         <FAQHeading title="FAQ" />
 
         <ul className="list-disc ml-0 marker:text-tertiary">
@@ -411,31 +411,11 @@ export const Content = () => {
             <FAQItem key={qa.question} question={qa.question} answer={qa.answer} />
           ))}
         </ul>
-        {/* <p>How do I stay social while remaining off of social media?</p>
-        <p>Why 20 days?</p>
-        <p>
-          I've struggled deeply in the past with loneliness and social isolation and I'm afraid I will relapse into dark
-          places if I do this - is this challenge for me?
-        </p>
-        <p>What do I do about my Facebook groups and staying up to date about in-person events?</p>
-        <p>Why so strict?</p>
-        <p>What happens if I break a rule? Should I start over?</p>
-        <p>What benefits can I expect to see?</p>
-        <p>What if I see no benefits at the end?</p>
-        <p>What about work notificaitons? I NEED to be on slack!</p>
-        <p>What's wrong with X? I feel like you're personally attacking the usage of X without any grounds</p> */}
       </Section>
 
       <Section title="Questions?">
         Contact us at <code className="block font-bold text-primary text-xl p-4 ">questions@replug20.com</code>
       </Section>
-      {/* <TheUpside /> */}
-
-      {/* <Section title="What's this 36 hour technology hiatus">Coming Soon</Section> */}
-
-      {/* <footer className="mt-16 text-[#A4853F] text-lg">
-        <p>Inspired by various digital detox programs.</p>
-      </footer> */}
     </div>
   );
 };
