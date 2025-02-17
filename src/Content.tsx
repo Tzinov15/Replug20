@@ -1,16 +1,13 @@
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { PropsWithChildren, useEffect, useRef, useState } from "react";
-import { useMediaQuery } from "usehooks-ts";
 
-import { Header } from "./Header";
+import { Splash } from "./Splash";
 import { TheUpside } from "./TheUpside";
-import logo from "./logo_yellow_20.png";
 
 interface SectionProps extends PropsWithChildren {
   title: string;
 }
 export const Section: React.FC<SectionProps> = ({ title, children }) => (
-  <div className="mt-6 mb-1  mx-auto text-center px-6 lg:px-10">
+  <div className="mt-6 mb-1  mx-auto text-center px-4 lg:px-10">
     <h2 className="text-2xl font-bold text-[#A4853F] mb-0">{title}</h2>
     <div className="text-lg text-gray-700 leading-relaxed">{children}</div>
   </div>
@@ -18,14 +15,14 @@ export const Section: React.FC<SectionProps> = ({ title, children }) => (
 
 const NotificationItem = ({ title, description }: { title: string; description: string }) => {
   return (
-    <li className="my-12 text-left mx-auto grid grid-cols-2">
-      <span className="font-bold text-primary mr-8">{title}:</span>
-      <span className="text-gray-700">{description}</span>
+    <li className="my-8 text-left mx-auto grid grid-cols-5 border-b items-center border-b-primary border-opacity-50 w-full pb-4 ">
+      <p className="font-[700] text-lg text-primary mr-8 col-span-2">{title}</p>
+      <p className="text-black opacity-60 text-[14px] col-span-3">{description}</p>
     </li>
   );
 };
 
-const Rule = ({
+export const Rule = ({
   title,
   description,
   anchor,
@@ -37,151 +34,23 @@ const Rule = ({
 }) => {
   return (
     <a className="block" href={anchor}>
-      <div className="w-full flex items-center my-2 ">
+      <div className="w-full flex items-center my-[6px] ">
         {title ? (
-          <div className="flex items-center justify-center  bg-highlight text-accent rounded-full h-10 w-10 min-h-10 left-4 min-w-10">
+          <div className="flex items-center justify-center  bg-primary text-highlight rounded-full h-8 w-8 min-h-8 left-4 min-w-8">
             <b>{title}</b>
           </div>
         ) : null}
         <div
-          className={`bg-accent ${title ? "ml-4" : ""} px-2 py-3 rounded-lg text-highlight lg:min-h-10 relative flex items-center justify-center lg:justify-start w-full lg:w-full`}
+          className={`bg-accent ${title ? "ml-2" : ""} px-2 py-2 rounded-lg text-highlight lg:min-h-10 relative flex items-center justify-center lg:justify-start w-full lg:w-full`}
         >
           <p className="">{description}</p>
         </div>
       </div>
     </a>
-  );
-};
-const RuleLight = ({
-  title,
-  description,
-  anchor,
-  onClick,
-  scrolledPast,
-}: {
-  title: string;
-  description: React.ReactNode;
-  content?: React.ReactNode;
-  anchor: string;
-  onClick?: () => void;
-  scrolledPast?: boolean;
-}) => {
-  return (
-    <a className="block" href={anchor} onClick={onClick}>
-      <div className="w-full flex items-center">
-        <div
-          className={`flex items-center justify-center mr-2  ${scrolledPast ? "bg-secondary text-woodland-400" : "bg-primary text-highlight"} transition-all duration-500 rounded-full h-6 w-6 min-h-6 left-4 min-w-6`}
-        >
-          <b className="text-xs">{title}</b>
-        </div>{" "}
-        <div className="text-accent rounded-lg text-sm font-extrabold  lg:min-h-10 flex items-center justify-start lg:justify-start w-full lg:w-full ">
-          <p className="">{description}</p>
-        </div>
-      </div>
-    </a>
-  );
-};
-
-interface AccordionProps {
-  percentScrolled: number;
-  markers: { title: string; percentageDownThePage: number }[];
-}
-const Accordion: React.FC<AccordionProps> = ({ percentScrolled, markers }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const closeAccordion = () => setIsOpen(false);
-
-  return (
-    <div className="bg-background w-full z-50 shadow-lg">
-      <div
-        className="flex h-16 cursor-pointer items-center z-50 w-full justify-between p-4 bg-background  rounded-lg"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <img src={logo} className="max-w-[50%] z-50" />
-        <h2 className="text-secondary font-bold">The Rules</h2>
-        <ChevronDownIcon
-          className={`text-secondary w-6 h-6 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-        />
-      </div>
-
-      <div className={`overflow-hidden transition-all duration-500 ${isOpen ? "max-h-[400px]" : "max-h-0"} px-2`}>
-        <div className="mb-2 gap-y-4 flex flex-col">
-          <RuleLight
-            scrolledPast={percentScrolled > markers[0].percentageDownThePage}
-            anchor="#rulenumber1"
-            title="1"
-            description="No screens within 60 minutes"
-            onClick={closeAccordion}
-          />
-          <RuleLight
-            scrolledPast={percentScrolled > markers[1].percentageDownThePage}
-            anchor="#rulenumber2"
-            title="2"
-            description="No screens during meals"
-            onClick={closeAccordion}
-          />
-          <RuleLight
-            scrolledPast={percentScrolled > markers[2].percentageDownThePage}
-            anchor="#rulenumber3"
-            title="3"
-            description="Only calls and messages for notifications"
-            onClick={closeAccordion}
-          />
-          <RuleLight
-            scrolledPast={percentScrolled > markers[3].percentageDownThePage}
-            anchor="#rulenumber4"
-            title="4"
-            description="No doom scrolling apps"
-            onClick={closeAccordion}
-          />
-          <RuleLight
-            scrolledPast={percentScrolled > markers[4].percentageDownThePage}
-            anchor="#rulenumber5"
-            title="5"
-            description="No idle phone usage"
-            onClick={closeAccordion}
-          />
-          <RuleLight
-            scrolledPast={percentScrolled > markers[5].percentageDownThePage}
-            anchor="#rulenumber6"
-            title="6"
-            description="No screens within 60 minutes of bedtime"
-            onClick={closeAccordion}
-          />
-        </div>
-      </div>
-
-      <div className="w-full h-[3px] bg-highlight relative flex items-center">
-        <div
-          className="h-[3px] bg-primary absolute left-0 "
-          style={{
-            width: `${percentScrolled * 100}%`,
-          }}
-        />
-        {markers.map((marker) => (
-          <div
-            key={marker.title}
-            className={`transition-all absolute h-5 w-5 duration-500 ${marker.percentageDownThePage < percentScrolled ? "bg-secondary" : "bg-primary"}  rounded-full flex items-center justify-center shadow-lg`}
-            style={{
-              left: `${marker.percentageDownThePage * 100}%`,
-              // top: "-1px",
-            }}
-          >
-            <span
-              className={`text-xs transition-all duration-500 ${marker.percentageDownThePage < percentScrolled ? "text-woodland-200" : "text-highlight"}   font-bold`}
-            >
-              {marker.title}
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
   );
 };
 
 export const Content = () => {
-  const [scrollOffset, setScrollOffset] = useState<number>(0);
-
   const firstRuleRef = useRef<HTMLDivElement>(null);
   const secondRuleRef = useRef<HTMLDivElement>(null);
   const thirdRuleRef = useRef<HTMLDivElement>(null);
@@ -196,19 +65,12 @@ export const Content = () => {
   const fifthRulePercentageOfPageDown = (fifthRuleRef.current?.offsetTop || 0) / document.body.scrollHeight;
   const sixthRulePercentageOfPageDown = (sixthRuleRef.current?.offsetTop || 0) / document.body.scrollHeight;
 
-  const accordionMarkers = [
-    { title: "1", percentageDownThePage: firstRulePercentageOfPageDown },
-    { title: "2", percentageDownThePage: secondRulePercentageOfPageDown },
-    { title: "3", percentageDownThePage: thirdRulePercentageOfPageDown },
-    { title: "4", percentageDownThePage: fourthRulePercentageOfPageDown },
-    { title: "5", percentageDownThePage: fifthRulePercentageOfPageDown },
-    { title: "6", percentageDownThePage: sixthRulePercentageOfPageDown },
-  ];
+  const [scrollOffset, setScrollOffset] = useState<number>(0);
 
-  const matches = useMediaQuery("(min-width: 1024px)");
+  const totalPageHeight = document.body.scrollHeight - window.innerHeight;
 
-  const headerStickyCutoff = 730;
-  scrollOffset;
+  const percentageOfScreenVerticallyScrolled = scrollOffset / totalPageHeight;
+
   useEffect(() => {
     function handleScroll() {
       const offset = window.scrollY;
@@ -222,94 +84,18 @@ export const Content = () => {
     };
   }, []);
 
-  const totalPageHeight = document.body.scrollHeight - window.innerHeight;
-
-  const percentageOfScreenVerticallyScrolled = scrollOffset / totalPageHeight;
+  const accordionMarkers = [
+    { title: "1", percentageDownThePage: firstRulePercentageOfPageDown },
+    { title: "2", percentageDownThePage: secondRulePercentageOfPageDown },
+    { title: "3", percentageDownThePage: thirdRulePercentageOfPageDown },
+    { title: "4", percentageDownThePage: fourthRulePercentageOfPageDown },
+    { title: "5", percentageDownThePage: fifthRulePercentageOfPageDown },
+    { title: "6", percentageDownThePage: sixthRulePercentageOfPageDown },
+  ];
 
   return (
     <div className="flex flex-col items-start justify-start min-h-screen bg-background text-center ">
-      <div
-        className={`fixed z-50 top-0 w-full lg:w-fit flex flex-col  ${scrollOffset > headerStickyCutoff ? "opacity-100" : "opacity-0"} duration-500 transition-all`}
-      >
-        {matches ? (
-          <div className="p-4">
-            <h2 className="text-2xl font-bold text-[#A4853F] mb-0">The Rules</h2>
-            <RuleLight anchor="#rulenumber1" title="1" description="No screens within 60 minutes" />
-            <RuleLight anchor="#rulenumber2" title="2" description="No screens during meals" />
-            <RuleLight anchor="#rulenumber3" title="3" description="Only calls and messages for notifications" />
-            <RuleLight anchor="#rulenumber4" title="4" description="No doom scrolling apps" />
-            <RuleLight anchor="#rulenumber5" title="5" description="No idle phone usage" />
-            <RuleLight anchor="#rulenumber6" title="6" description="No screens within 60 minutes of bedtime" />
-          </div>
-        ) : (
-          <Accordion markers={accordionMarkers} percentScrolled={percentageOfScreenVerticallyScrolled} />
-        )}
-      </div>
-      <Header />
-
-      <Section title="The Rules">
-        <div className="grid grid-cols-1 lg:grid-cols-1 gap-2">
-          <Rule
-            anchor="#rulenumber1"
-            title="1"
-            description={
-              <>
-                No screens within <b>60 minutes of waking up</b>
-              </>
-            }
-          />
-          <Rule
-            anchor="#rulenumber2"
-            title="2"
-            description={
-              <>
-                No screens <b>during meals</b>
-              </>
-            }
-          />
-          <Rule anchor="#rulenumber3" title="3" description={<>Only calls and messages for notifications</>} />
-          <Rule
-            anchor="#rulenumber4"
-            title="4"
-            description={
-              <>
-                No <b>doom-scrolling</b> apps
-              </>
-            }
-          />
-          <Rule
-            anchor="#rulenumber5"
-            title="5"
-            description={
-              <>
-                No <b>idle</b> phone usage
-              </>
-            }
-          />
-          <Rule
-            anchor="#rulenumber6"
-            title="6"
-            description={
-              <>
-                No screens within <b>60 minutes of bedtime</b>
-              </>
-            }
-          />
-        </div>
-        {/* <div className="bg-accent mt-4 px-6 py-2 rounded-lg text-highlight relative flex items-center justify-center">
-                One 36 hour technology hiatus
-              </div> */}
-      </Section>
-
-      <hr className="border-t-2 border-primary w-3/4 mx-auto my-8" />
-
-      <h3 className="text-secondary text-xl my-12 mx-16">
-        Replug is about regaining agency over our time and emotional well-being by trading screens and distractions for
-        presence and purpose
-      </h3>
-
-      <hr className="border-t-2 border-primary w-3/4 mx-auto my-8" />
-
+      <Splash markers={accordionMarkers} percentageOfScreenVerticallyScrolled={percentageOfScreenVerticallyScrolled} />
       <Section title="The Rules Explained">
         <div className="text-left mx-auto max-w-2xl">
           <strong id="rulenumber1" ref={firstRuleRef} className="scroll-mt-20" />
@@ -322,15 +108,13 @@ export const Content = () => {
               </>
             }
           />
-          <p>
-            Treat the first 60 minutes of your day as sacred and intentional. Avoid all forms of digital engagement to
-            prevent your morning from getting derailed.{" "}
-          </p>
+          <p className="mt-8">Treat the first 60 minutes of your day as sacred and intentional.</p>
           <br />
           <p>
             The following types of notifications / content that are often consumed first thing in the morning can
-            negatively influence your mood and set the tone for the day. This is why for the first 60 minutes, we are
-            removing:
+            negatively influence your mood and set the tone for the day. While they are fine - and sometimes neccessary
+            - to consume throughout the day, there is no need to subject the fresh start of a new day to emotions
+            wrapped up in this content. This is why for the first 60 minutes, we are removing:
           </p>
           <ul>
             <NotificationItem title="News" description="Often provokes anxiety, despair, or rage" />
@@ -381,9 +165,9 @@ export const Content = () => {
         <div className="text-left mx-auto max-w-2xl">
           <strong id="rulenumber2" ref={secondRuleRef} className="scroll-mt-20" />
           <Rule anchor="#rulenumber2" title="2" description={<>No screens during meals</>} />
-          <p>
-            Treat each meal as an opportunity to slow down and surface from the rush that is constantly being on all the
-            time.
+          <p className="mt-8">
+            Treat each meal as an opportunity to slow down and surface from the rush that is constantly being "on" all
+            the time.
           </p>
           <br />
           {/* <p>
@@ -414,25 +198,38 @@ export const Content = () => {
         <div className="text-left mx-auto max-w-2xl">
           <strong id="rulenumber3" ref={thirdRuleRef} className="scroll-mt-20" />
           <Rule anchor="#rulenumber3" title="3" description={<>Only calls and messages for notifications</>} />
-          <p>Treat these 20 days as an experiment in reducing notification overload and seeing what happens....</p>
-          <p>
-            We are as connected as ever, and yet often as anxious as we've ever been, as unable to focus as we've ever
-            been, and as brain numbed as we've ever been. Free yourself from the constant chatter and regain a sense of
-            agency.
+          <p className="mt-8">
+            Treat these 20 days as an experiment in reducing notification overload and relaxing in longer periods of
+            uninterrupted time.
           </p>
           <br />
+          <p>
+            We are as connected as ever, and yet often as anxious as we've ever been, as unable to focus as we've ever
+            been, and as irritable as we've ever been. Free yourself from the constant chatter and regain a sense of
+            calm.
+          </p>
+          <br />
+          <p>
+            Try to utilize Do Not Disturb more often and try to batch how often you check and respond to messages so
+            that instead of reacting in the moment to every message, you can proactively choose when to engage and
+            respond.
+          </p>
         </div>
 
         <hr className="border-t-2 border-highlight w-[90vw] -ml-12 left-0 mx-auto my-8" />
         <div className="text-left mx-auto max-w-2xl">
           <strong id="rulenumber4" ref={fourthRuleRef} className="scroll-mt-20" />
-          <Rule anchor="#rulenumber4" title="4" description={<>No doom-scrolling apps</>} />
-          <p>Treat...</p>
-          <p>
+          <Rule anchor="#rulenumber4" title="4" description={<>No infinitely scrolling apps</>} />
+          <p className="mt-8">
+            Zombie scrolling, brain-rotting, dopamine looping, pulling the slot-machine lever, whatever you want to call
+            it, a deep truth we all know is that the pattern of "infinite scroll" is profoundly addictive and potent.
             The internet has provided us with a near endless number of options for content that we can scroll forever.
+          </p>
+          <br />
+          <p>
             Much like the slot machines of Vegas, every refresh, every flick of the thumb, every new app provides new
-            stimulation, and is thus incredibly mind consuming and addicting. The goal here is to curb the compulsive
-            behavior of continuing to scroll
+            stimulation, and is thus incredibly consuming and addicting. The goal here is to entirely eliminate any apps
+            that have the concept of "infinitely providing new content".
           </p>
           <NotificationItem
             title="Social Media"
@@ -441,16 +238,31 @@ export const Content = () => {
           <NotificationItem title="Fitness Apps" description="Strava / Peloton activity feeds" />
           <NotificationItem title="Sports Scores" description="NBA / NFL / MLB / NHL / MLS / etc" />
           <NotificationItem title="News" description="News websites, news on tv, news podcasts, etc" />
+          <NotificationItem title="Entertainment" description="9GAG / iFunny / Imgur / YouTube Shorts / YouTube" />
+          <NotificationItem title="Shopping" description="Amazon / Groupon / Wayfair" />
           <NotificationItem title="Dating Apps" description="Hinge / Tinder / Bumble" />
+          <p>
+            Often times when faced with an uncomfortable state of being - boredom, angst, anxiety, stress, fatigue, etc
+            - one of our go to coping mechanisms is the endless set of dopamine that infinite scroll provides. So often
+            it doesn't matter <i>what</i> it is that we consume, as long as it is novel and new - something all of the
+            above apps are designed to provide.
+          </p>
+          <br />
+          <p>
+            For this reason, we are with one-fell-swoop removing <i>all</i> such sources of numbing to return to
+            ourselves and our experience instead.
+          </p>
         </div>
 
         <hr className="border-t-2 border-highlight w-[90vw] -ml-12 left-0 mx-auto my-8" />
         <div className="text-left mx-auto max-w-2xl">
           <strong id="rulenumber5" ref={fifthRuleRef} className="scroll-mt-20" />
           <Rule anchor="#rulenumber5" title="5" description={<>No idle phone usage</>} />
-          Many of us have developed a tick-like habit of reaching for our phones during every idle moment in our day and
-          getting lost in the digital stimulus at our fingertips. This rule is about breaking that automatic response
-          and reclaiming agency over our time.
+          <p className="mt-8">
+            Many of us have developed a tick-like habit of reaching for our phones during every idle moment in our day
+            and getting lost in the digital stimulus at our fingertips. This rule is about breaking that automatic
+            response and reclaiming agency over our time.
+          </p>
           <br />
           <br />
           <b>Examples of passive phone usage</b>
@@ -544,6 +356,8 @@ export const Content = () => {
         <p>What happens if I break a rule? Should I start over?</p>
         <p>What benefits can I expect to see?</p>
         <p>What if I see no benefits at the end?</p>
+        <p>What about work notificaitons? I NEED to be on slack!</p>
+        <p>What's wrong with X? I feel like you're personally attacking the usage of X without any grounds</p>
       </Section>
 
       <Section title="Questions?">Contact us at</Section>
