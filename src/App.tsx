@@ -28,7 +28,7 @@ datadogRum.init({
 });
 
 export const App = () => {
-  const [mode, setMode] = useState<"20day" | "36hour">("36hour");
+  const [mode, setMode] = useState<"20day" | "36hour">("20day");
 
   useEffect(() => {
     if (mode === "36hour") {
