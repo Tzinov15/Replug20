@@ -44,6 +44,9 @@ export const App = () => {
     if (mode === "36hour") {
       window.scrollTo({ top: 0, behavior: "smooth" });
       fireConfetti({ colors: ["#E3C892", "#F5F1E0"], duration: 0.4, particleCount: 50 });
+      document.body.style.backgroundColor = "#040F0F";
+    } else {
+      document.body.style.backgroundColor = "#F5F1E0";
     }
   }, [mode]);
 
