@@ -3,7 +3,6 @@ module.exports = {
   printWidth: 120,
   importOrder: [
     "<THIRD_PARTY_MODULES>",
-    "^@fronterahealth/(.*)$",
     "^@(api|hooks|providers|internationalization|components|pages|routes)/(.*)$",
     "^[./]",
   ],
