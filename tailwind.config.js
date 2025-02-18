@@ -17,6 +17,7 @@ module.exports = {
         accent: "#556B2F", // Deep forest green
         highlight: "#E3C892", // Warm beige
         highlightLite: "#CBB887",
+        richBlack: "#040F0F",
         tertiary: "#c07373", // Darker golden
         "blue-smoke": {
           50: "#f6f7f7",

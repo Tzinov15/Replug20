@@ -1,5 +1,6 @@
 import { PropsWithChildren, useEffect, useRef, useState } from "react";
 
+import { Collapsible } from "./Collapsible";
 import { FAQItem, QuestionsAndAnswers } from "./FAQItem";
 import { Splash } from "./Splash";
 
@@ -8,7 +9,7 @@ interface SectionProps extends PropsWithChildren {
 }
 export const Section: React.FC<SectionProps> = ({ title, children }) => (
   <div className="mt-6 mb-1  mx-auto text-center px-4 lg:px-10">
-    <h2 className="text-2xl font-bold text-[#A4853F] mb-0">{title}</h2>
+    <h2 className="text-2xl font-bold text-primary mb-0">{title}</h2>
     <div className="text-lg text-gray-700 leading-relaxed">{children}</div>
   </div>
 );
@@ -69,7 +70,7 @@ export const Rule = ({
   );
 };
 
-export const Content = () => {
+export const Content = ({ setMode }: { setMode: () => void }) => {
   const firstRuleRef = useRef<HTMLDivElement>(null);
   const secondRuleRef = useRef<HTMLDivElement>(null);
   const thirdRuleRef = useRef<HTMLDivElement>(null);
@@ -404,9 +405,33 @@ export const Content = () => {
       </Section> */}
 
       <Section title="">
-        <FAQHeading title="FAQ" />
+        <FAQHeading title="FAQ - [Work In Progress]" />
 
         <ul className="list-disc ml-0 marker:text-tertiary">
+          <Collapsible
+            content={
+              <p className="text-start text-[16px] text-tertiary font-bold">
+                We're really glad you asked 😎 <br />
+                <br />
+                If you're up for another fun challenge...
+                <u
+                  onClick={() => {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                    setMode();
+                  }}
+                >
+                  This is what happens
+                </u>
+              </p>
+            }
+            header={
+              <div className="">
+                <li>
+                  <p className="text-start text-[16px]">🎉 What happens on the 21st day?</p>
+                </li>
+              </div>
+            }
+          />
           {QuestionsAndAnswers.map((qa) => (
             <FAQItem key={qa.question} question={qa.question} answer={qa.answer} />
           ))}
