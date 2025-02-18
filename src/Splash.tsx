@@ -166,7 +166,7 @@ export const Splash: React.FC<SplashProps> = ({ markers, percentageOfScreenVerti
   const matches = useMediaQuery("(min-width: 1024px)");
 
   const [scrollOffset, setScrollOffset] = useState<number>(0);
-  const headerStickyCutoff = 1000;
+  const headerStickyCutoff = 650;
 
   useEffect(() => {
     function handleScroll() {
