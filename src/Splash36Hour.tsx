@@ -92,12 +92,11 @@ export const Splash36Hour: React.FC<SplashProps> = ({ setMode }) => {
         title="2"
       />
 
-      <p className="text-background text-sm opacity-50 mt-6">
+      <img src={drivingPic} className="w-[70vw] h-auto mx-auto my-8" />
+      <p className="text-background text-sm opacity-50 my-6">
         Now, you can ask a friend or family member to text you and ensure that a.) you don't get a ping and b.) they get
         the auto reply explaining what you are doing
       </p>
-
-      <img src={drivingPic} className="w-[70vw] h-auto mx-auto my-8" />
 
       <Rule
         anchor={"helllo"}
@@ -105,7 +104,7 @@ export const Splash36Hour: React.FC<SplashProps> = ({ setMode }) => {
         title="3"
       />
 
-      <p className="text-background text-sm opacity-50 mt-6">
+      <p className="text-background text-sm opacity-50 my-6">
         Despite going "off the grid", this is the most important step to being able to do something like an Unplug day
         without stressing out anyone who might need to reach you in an emergency (friends, loved ones, etc). <br />{" "}
         <br />
