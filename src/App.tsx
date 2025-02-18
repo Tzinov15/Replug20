@@ -30,6 +30,14 @@ datadogRum.init({
 export const App = () => {
   const [mode, setMode] = useState<"20day" | "36hour">("20day");
 
+  const pathname = window.location.pathname;
+
+  useEffect(() => {
+    if (pathname === "/tech-hiatus") {
+      setMode("36hour");
+    }
+  }, [pathname]);
+
   useEffect(() => {
     if (mode === "36hour") {
       fireConfetti({ colors: ["#E3C892", "#F5F1E0"], duration: 0.1, particleCount: 50 });
