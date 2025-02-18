@@ -84,7 +84,7 @@ export const Splash36Hour: React.FC<SplashProps> = ({ setMode }) => {
       <p className="text-background text-sm opacity-50 mt-6">It should look something like this when you're done</p>
 
       <div className="flex items-center justify-around w-full my-4">
-        <img src={messageScreenshot} className="w-[70vw] h-auto mx-auto my-8" />
+        <img src={messageScreenshot} className="w-[60vw] h-auto my-8" />
         <p
           className="p-4 bg-richBlack text-background"
           onClick={async () => {
