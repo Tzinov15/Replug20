@@ -1,3 +1,5 @@
+import { datadogRum } from "@datadog/browser-rum";
+
 import { Collapsible } from "./Collapsible";
 
 export const QuestionsAndAnswers = [
@@ -52,6 +54,12 @@ export const QuestionsAndAnswers = [
 export const FAQItem = ({ question, answer }: { question: string; answer: string }) => {
   return (
     <Collapsible
+      onClick={() => {
+        datadogRum.addAction("faqItemClicked", {
+          question: question,
+          answer: answer,
+        });
+      }}
       content={<p className="text-start text-[16px] text-tertiary font-bold">{answer}</p>}
       header={
         <div className="">

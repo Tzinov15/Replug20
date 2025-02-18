@@ -1,5 +1,8 @@
+import { datadogRum } from "@datadog/browser-rum";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
+import { useState } from "react";
 
+import { fireConfetti } from "./Components/confetti";
 import { Rule, Section } from "./Content36Hour";
 import { Header36Hour } from "./Header36Hour";
 import drivingIcon from "./driving2.png";
@@ -19,6 +22,7 @@ interface SplashProps {
   setMode: () => void;
 }
 export const Splash36Hour: React.FC<SplashProps> = ({ setMode }) => {
+  const [textCopied, setTextCopied] = useState(false);
   return (
     <div className="px-4">
       <Header36Hour />
@@ -79,7 +83,25 @@ export const Splash36Hour: React.FC<SplashProps> = ({ setMode }) => {
 
       <p className="text-background text-sm opacity-50 mt-6">It should look something like this when you're done</p>
 
-      <img src={messageScreenshot} className="w-[70vw] h-auto mx-auto my-8" />
+      <div className="flex items-center justify-around w-full my-4">
+        <img src={messageScreenshot} className="w-[70vw] h-auto mx-auto my-8" />
+        <p
+          className="p-4 bg-richBlack text-background"
+          onClick={async () => {
+            if (typeof window !== undefined) {
+              window.navigator.clipboard.writeText(
+                `Hi! You’ve reached me on a day where I'm taking a break from technology for 36 ohurs. Feel free to call, I'd love to chat and will pick up, otherwise I won't see your text until Sunday at 8:00am and will get back to you then. Thanks! 😎. If you're curious about what I'm doing and why, and want to learn more, checkout https://replug20.com/tech-hiatus`,
+              );
+              fireConfetti({ colors: ["#E3C892", "#F5F1E0"], duration: 0.1, particleCount: 50 });
+              setTextCopied(true);
+              setTimeout(() => setTextCopied(false), 3000);
+              datadogRum.addAction("autoReplyMessageCopied");
+            }
+          }}
+        >
+          {textCopied ? "Copied!" : "Copy this message"}
+        </p>
+      </div>
 
       <p className="text-background text-sm opacity-50 mt-2 mb-6">
         If you have an Android phone and are willing to provide us the steps to achieve this, reach out at

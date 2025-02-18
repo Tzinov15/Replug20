@@ -4,14 +4,18 @@ import { useState } from "react";
 interface CollapsibleProps {
   header: React.ReactNode;
   content: React.ReactNode;
+  onClick: () => void;
 }
-export const Collapsible: React.FC<CollapsibleProps> = ({ header, content }) => {
+export const Collapsible: React.FC<CollapsibleProps> = ({ header, content, onClick }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // const closeAccordion = () => setIsOpen(false);
 
   return (
-    <div className="bg-background w-full z-50 border-b border-lotus-500 border-opacity-50 my-4">
+    <div
+      onClick={() => onClick()}
+      className="bg-background w-full z-50 border-b border-lotus-500 border-opacity-50 my-4"
+    >
       <div
         className="grid grid-cols-[1fr_20px] h-fit cursor-pointer items-center z-50 w-full  px-4 py-2 bg-background  rounded-lg"
         onClick={() => setIsOpen(!isOpen)}

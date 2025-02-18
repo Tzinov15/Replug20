@@ -1,3 +1,4 @@
+import { datadogRum } from "@datadog/browser-rum";
 import { PropsWithChildren, useEffect, useRef, useState } from "react";
 
 import { Collapsible } from "./Collapsible";
@@ -53,7 +54,13 @@ export const Rule = ({
   content?: React.ReactNode;
 }) => {
   return (
-    <a className="block" href={anchor}>
+    <a
+      className="block"
+      href={anchor}
+      onClick={() => {
+        datadogRum.addAction("ruleClick", { rule: title });
+      }}
+    >
       <div className="w-full flex items-center my-[6px] ">
         {title ? (
           <div className="flex items-center justify-center  bg-primary text-highlight rounded-full h-8 w-8 min-h-8 left-4 min-w-8">
@@ -409,6 +416,12 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
 
         <ul className="list-disc ml-0 marker:text-tertiary">
           <Collapsible
+            onClick={() => {
+              datadogRum.addAction("faqItemClicked", {
+                question: "What happens on the 21st day?",
+                answer: "",
+              });
+            }}
             content={
               <p className="text-start text-[16px] text-tertiary font-bold">
                 We're really glad you asked 😎 <br />
@@ -418,6 +431,7 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
                   onClick={() => {
                     window.scrollTo({ top: 0, behavior: "smooth" });
                     setMode();
+                    datadogRum.addAction("unplugNavEvent");
                   }}
                 >
                   This is what happens
