@@ -431,11 +431,9 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
                 If you're up for another fun challenge...
                 <u
                   onClick={() => {
-                    window.scrollTo({ top: 0, behavior: "smooth" });
                     setMode();
-                    setTimeout(() => {
-                      datadogRum.addAction("unplugNavEvent");
-                    }, 2000);
+                    // setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 10);
+                    datadogRum.addAction("unplugNavEvent");
                   }}
                 >
                   This is what happens
