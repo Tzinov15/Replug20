@@ -40,7 +40,9 @@ export const App = () => {
 
   useEffect(() => {
     if (mode === "36hour") {
-      fireConfetti({ colors: ["#E3C892", "#F5F1E0"], duration: 0.1, particleCount: 50 });
+      setTimeout(() => {
+        fireConfetti({ colors: ["#E3C892", "#F5F1E0"], duration: 0.1, particleCount: 50 });
+      }, 500);
     }
   }, [mode]);
 
