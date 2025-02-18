@@ -56,8 +56,10 @@ export const FAQItem = ({ question, answer }: { question: string; answer: string
     <Collapsible
       onClick={() => {
         datadogRum.addAction("faqItemClicked", {
-          question: question,
-          answer: answer,
+          faqItemClicked: {
+            question: question,
+            answer: answer,
+          },
         });
       }}
       content={<p className="text-start text-[16px] text-tertiary font-bold">{answer}</p>}

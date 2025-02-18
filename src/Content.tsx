@@ -58,7 +58,7 @@ export const Rule = ({
       className="block"
       href={anchor}
       onClick={() => {
-        datadogRum.addAction("ruleClick", { rule: title });
+        datadogRum.addAction("ruleClick", { ruleClick: { rule: title } });
       }}
     >
       <div className="w-full flex items-center my-[6px] ">
@@ -418,8 +418,10 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
           <Collapsible
             onClick={() => {
               datadogRum.addAction("faqItemClicked", {
-                question: "What happens on the 21st day?",
-                answer: "",
+                faqItemClicked: {
+                  question: "What happens on the 21st day?",
+                  answer: "",
+                },
               });
             }}
             content={
