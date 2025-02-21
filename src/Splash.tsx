@@ -1,5 +1,5 @@
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 
 import { Rule, Section } from "./Content";
@@ -158,11 +158,106 @@ const Accordion: React.FC<AccordionProps> = ({ percentScrolled, markers }) => {
   );
 };
 
+const FloatingDesktopNav = ({
+  percentScrolled,
+  markers,
+  stepsSectionIsInView,
+}: {
+  percentScrolled: number;
+  markers: { title: string; percentageDownThePage: number }[];
+  stepsSectionIsInView: boolean;
+}) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const [width, setWidth] = useState<number>(0);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      setWidth(containerRef.current.clientHeight);
+    }
+  }, [containerRef.current]);
+
+  return (
+    <div className="p-4 flex items-start h-full">
+      <div className="flex flex-col items-start " ref={containerRef}>
+        <h2
+          className={`text-2xl font-bold ${stepsSectionIsInView ? "text-primary" : "text-accent"} transition-all mb-0`}
+        >
+          {stepsSectionIsInView ? "The Steps" : "The Rules"}
+        </h2>
+        <div
+          className={`h-1 transition-all ${stepsSectionIsInView ? "bg-primary" : "bg-accent"}  bg-opacity-20 mr-4 relative`}
+          style={{ width: `${width}px` }}
+        >
+          <div
+            className={`h-1 transition-colors ${stepsSectionIsInView ? "bg-primary" : "bg-accent"} absolute`}
+            style={{ width: `${width * percentScrolled}px` }}
+          />
+        </div>
+        {stepsSectionIsInView ? (
+          <>
+            <RuleLight anchor="#stepnumber1" title="1" description="Pick a start date" />
+            <RuleLight anchor="#stepnumber2" title="2" description="Prepare your Phone" />
+            <RuleLight anchor="#stepnumber3" title="3" description="Communicate Your Commitment" />
+            <RuleLight anchor="#stepnumber4" title="4" description="Identify your Why" />
+            <RuleLight anchor="#stepnumber5" title="5" description="Write to your future self" />
+          </>
+        ) : (
+          <>
+            <RuleLight
+              scrolledPast={percentScrolled > markers[0].percentageDownThePage}
+              anchor="#rulenumber1"
+              title="1"
+              description="No screens within 60 minutes"
+            />
+            <RuleLight
+              scrolledPast={percentScrolled > markers[1].percentageDownThePage}
+              anchor="#rulenumber2"
+              title="2"
+              description="No screens during meals"
+            />
+            <RuleLight
+              scrolledPast={percentScrolled > markers[2].percentageDownThePage}
+              anchor="#rulenumber3"
+              title="3"
+              description="No notifications except calls, messages, work"
+            />
+            <RuleLight
+              scrolledPast={percentScrolled > markers[3].percentageDownThePage}
+              anchor="#rulenumber4"
+              title="4"
+              description="No infinitely scrolling apps"
+            />
+            <RuleLight
+              scrolledPast={percentScrolled > markers[4].percentageDownThePage}
+              anchor="#rulenumber5"
+              title="5"
+              description="No idle phone usage"
+            />
+            <RuleLight
+              scrolledPast={percentScrolled > markers[5].percentageDownThePage}
+              anchor="#rulenumber6"
+              title="6"
+              description="No screens within 60 minutes of bedtime"
+            />
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
 interface SplashProps {
   markers: { title: string; percentageDownThePage: number }[];
   percentageOfScreenVerticallyScrolled: number;
+  percentageOfRuleSectionVerticallyScrolled: number;
+  stepsSectionIsInView: boolean;
 }
-export const Splash: React.FC<SplashProps> = ({ markers, percentageOfScreenVerticallyScrolled }) => {
+export const Splash: React.FC<SplashProps> = ({
+  markers,
+  stepsSectionIsInView,
+  percentageOfScreenVerticallyScrolled,
+}) => {
   const matches = useMediaQuery("(min-width: 1024px)");
 
   const [scrollOffset, setScrollOffset] = useState<number>(0);
@@ -187,15 +282,11 @@ export const Splash: React.FC<SplashProps> = ({ markers, percentageOfScreenVerti
         className={`fixed z-50 top-0 w-full lg:w-fit flex flex-col  ${scrollOffset > headerStickyCutoff ? "opacity-100" : "opacity-0"} duration-500 transition-all`}
       >
         {matches ? (
-          <div className="p-4">
-            <h2 className="text-2xl font-bold text-[#A4853F] mb-0">The Rules</h2>
-            <RuleLight anchor="#rulenumber1" title="1" description="No screens within 60 minutes" />
-            <RuleLight anchor="#rulenumber2" title="2" description="No screens during meals" />
-            <RuleLight anchor="#rulenumber3" title="3" description="No notifications except calls, messages, work" />
-            <RuleLight anchor="#rulenumber4" title="4" description="No infinitely scrolling apps" />
-            <RuleLight anchor="#rulenumber5" title="5" description="No idle phone usage" />
-            <RuleLight anchor="#rulenumber6" title="6" description="No screens within 60 minutes of bedtime" />
-          </div>
+          <FloatingDesktopNav
+            stepsSectionIsInView={stepsSectionIsInView}
+            markers={markers}
+            percentScrolled={percentageOfScreenVerticallyScrolled}
+          />
         ) : (
           <Accordion markers={markers} percentScrolled={percentageOfScreenVerticallyScrolled} />
         )}
