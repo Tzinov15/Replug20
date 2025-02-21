@@ -10,14 +10,7 @@ export const QuestionsAndAnswers = [
   },
   {
     question: "Why 20 days?",
-    answer:
-      "Research shows that it takes about 21 days to form a new habit. By taking a break from screens for 20 days, you can reset your relationship with technology and create healthier habits.",
-  },
-  {
-    question:
-      "I've struggled deeply in the past with loneliness and social isolation and I'm afraid I will relapse into dark places if I do this - is this challenge for me?",
-    answer:
-      "This challenge is designed to help you create a healthier relationship with technology and improve your overall well-being. If you have concerns about loneliness or social isolation, we recommend seeking support from a mental health professional.",
+    answer: "",
   },
   {
     question: "What do I do about my Facebook groups and staying up to date about in-person events?",

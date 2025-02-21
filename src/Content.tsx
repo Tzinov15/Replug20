@@ -486,7 +486,8 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
       </div>
 
       <Section title="Questions?">
-        Contact us at <code className="block font-bold text-primary text-xl p-4 ">questions@replug20.com</code>
+        Contact us at (except not yet because waiting on DNS){" "}
+        <code className="block font-bold text-primary text-xl p-4 ">questions@replug20.com</code>
       </Section>
     </div>
   );
