@@ -188,7 +188,7 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
           </ul>
         </div>
 
-        <hr className="border-t-2 border-highlight w-[90vw] -ml-12 left-0 mx-auto my-8" />
+        <hr className="border-t-2 border-primary w-3/4 mx-auto my-8" />
         <div className="text-left mx-auto max-w-2xl">
           <strong id="rulenumber2" ref={secondRuleRef} className="scroll-mt-20" />
           <Rule anchor="#rulenumber2" title="2" description={<>No screens during meals</>} />
@@ -221,7 +221,7 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
           </p>
         </div>
 
-        <hr className="border-t-2 border-highlight w-[90vw] -ml-12 left-0 mx-auto my-8" />
+        <hr className="border-t-2 border-primary w-3/4 mx-auto my-8" />
         <div className="text-left mx-auto max-w-2xl">
           <strong id="rulenumber3" ref={thirdRuleRef} className="scroll-mt-20" />
           <Rule anchor="#rulenumber3" title="3" description={<>No notifications except calls, messages, work</>} />
@@ -243,7 +243,7 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
           </p>
         </div>
 
-        <hr className="border-t-2 border-highlight w-[90vw] -ml-12 left-0 mx-auto my-8" />
+        <hr className="border-t-2 border-primary w-3/4 mx-auto my-8" />
         <div className="text-left mx-auto max-w-2xl">
           <strong id="rulenumber4" ref={fourthRuleRef} className="scroll-mt-20" />
           <Rule anchor="#rulenumber4" title="4" description={<>No infinitely scrolling apps</>} />
@@ -281,7 +281,7 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
           </p>
         </div>
 
-        <hr className="border-t-2 border-highlight w-[90vw] -ml-12 left-0 mx-auto my-8" />
+        <hr className="border-t-2 border-primary w-3/4 mx-auto my-8" />
         <div className="text-left mx-auto max-w-2xl">
           <strong id="rulenumber5" ref={fifthRuleRef} className="scroll-mt-20" />
           <Rule anchor="#rulenumber5" title="5" description={<>No idle phone usage</>} />
@@ -324,7 +324,7 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
           </p>
         </div>
 
-        <hr className="border-t-2 border-highlight w-[100vw] -ml-12 left-0 mx-auto my-8" />
+        <hr className="border-t-2 border-primary w-3/4 mx-auto my-8" />
         <div className="text-left mx-auto max-w-2xl">
           <strong id="rulenumber6" ref={sixthRuleRef} className="scroll-mt-20" />
           <Rule anchor="#rulenumber6" title="6" description={<>No screens within 60 minutes of bedtime</>} />
@@ -342,117 +342,120 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
       </Section>
       <hr className="border-t-2 border-secondary w-3/4 mx-auto my-8" />
 
-      <Section title="Steps to Get Started">
-        <div className="flex flex-col items-start justify-start">
-          <Heading title="Pick a Start Date" />
-          <p className="mt-4">
-            Look at your calendar, and decide when it makes most sense to start the 20 day detox. Keep in mind existing
-            committiments that come into conflict with the rules. Pick a start date, mark it on your calendar
-          </p>
-          <Heading title="Prepare your Phone" />
-          <br />
-          <p>
-            Set aside time the day before you start to delete unneccessary apps, update notification settings,
-            communicate with any online connections (dating apps, social media DMs, etc) that you will be unavailable
-            over those platforms
-          </p>
-          <br />
-          <Heading title="Communicate your Commitment" />
-          <p className="mt-4">
-            Tell your friends and family what you will be doing and why, setup in person hangs, and invite friends to
-            come along and join you! Some will, some will consider it, and some will fight it.
-          </p>
+      <div className="text-left mx-auto max-w-2xl">
+        <Section title="Steps to Get Started">
+          <div className="flex flex-col items-start justify-start">
+            <Heading title="Pick a Start Date" />
+            <p className="mt-4">
+              Look at your calendar, and decide when it makes most sense to start the 20 day detox. Keep in mind
+              existing committiments that come into conflict with the rules. Pick a start date, mark it on your calendar
+            </p>
+            <Heading title="Prepare your Phone" />
+            <br />
+            <p>
+              Set aside time the day before you start to delete unneccessary apps, update notification settings,
+              communicate with any online connections (dating apps, social media DMs, etc) that you will be unavailable
+              over those platforms
+            </p>
+            <br />
+            <Heading title="Communicate your Commitment" />
+            <p className="mt-4">
+              Tell your friends and family what you will be doing and why, setup in person hangs, and invite friends to
+              come along and join you! Some will, some will consider it, and some will fight it.
+            </p>
 
-          <br />
-          <p>
-            {" "}
-            This is where it is likely you will get push back; people will say you're crazy, people will project their
-            own insecurities onto you, people will say you're being dramatic, people will say this is over the top. This
-            is normal. Stick to your guns and recognize you're doing something for yourself.{" "}
-          </p>
-          <br />
-          <p>
-            <i className="text-primary font-bold">
-              "Whenever you find yourself on the side of the majority, it is time to pause and reflect"
-            </i>{" "}
-            <p className="inline ml-2">- Mark Twain</p>
-          </p>
-          <br />
+            <br />
+            <p>
+              {" "}
+              This is where it is likely you will get push back; people will say you're crazy, people will project their
+              own insecurities onto you, people will say you're being dramatic, people will say this is over the top.
+              This is normal. Stick to your guns and recognize you're doing something for yourself.{" "}
+            </p>
+            <br />
+            <p>
+              <i className="text-primary font-bold">
+                "Whenever you find yourself on the side of the majority, it is time to pause and reflect"
+              </i>{" "}
+              <p className="inline ml-2">- Mark Twain</p>
+            </p>
+            <br />
 
-          <Heading title="Identify your Why" />
-          <p className="mt-4">
-            As confident as we are in how transformative these 20 days will be, we are equally as confident in their
-            challenging nature.{" "}
-          </p>
-          <br />
-          <p>
-            Our phone habits have become so deeply and profoundly ingrained in us that shifting them takes momentous
-            willpower. Like any other addiction, it will get harder before it gets better. Spend some time reflecting on
-            why you're doing this.
-          </p>
-          <br />
+            <Heading title="Identify your Why" />
+            <p className="mt-4">
+              As confident as we are in how transformative these 20 days will be, we are equally as confident in their
+              challenging nature.{" "}
+            </p>
+            <br />
+            <p>
+              Our phone habits have become so deeply and profoundly ingrained in us that shifting them takes momentous
+              willpower. Like any other addiction, it will get harder before it gets better. Spend some time reflecting
+              on why you're doing this.
+            </p>
+            <br />
 
-          <Heading title="Write to your future self" />
-          <p className="mt-4">
-            Take inventory of where you currently are at in terms of sleep quality, average anxiety levels throughout
-            the day, current screen time, motivation levels, and overall sense of connection with yourself and others.
-          </p>
-          <br />
-          <p className="mt-4">
-            Make a commitment to your future self - the future self that could be slightly less anxious, slightly more
-            present, and slightly more intentional - that you will try your best to follow these 6 rules over the next
-            20 days.
-          </p>
-          <br />
-        </div>
-      </Section>
-      {/* <Section title="Do I need to buy anything?">
+            <Heading title="Write to your future self" />
+            <p className="mt-4">
+              Take inventory of where you currently are at in terms of sleep quality, average anxiety levels throughout
+              the day, current screen time, motivation levels, and overall sense of connection with yourself and others.
+            </p>
+            <br />
+            <p className="mt-4">
+              Make a commitment to your future self - the future self that could be slightly less anxious, slightly more
+              present, and slightly more intentional - that you will try your best to follow these 6 rules over the next
+              20 days.
+            </p>
+            <br />
+          </div>
+        </Section>
+        {/* <Section title="Do I need to buy anything?">
         No! However, some people have said the following things are useful and enhance their experiences: a separate
         alarm clock, journals, physical paper calendars, printers, books,
       </Section> */}
 
-      <Section title="">
-        <FAQHeading title="FAQ - [Work In Progress]" />
+        <Section title="">
+          <FAQHeading title="FAQ - [Work In Progress]" />
 
-        <ul className="list-disc ml-0 marker:text-tertiary">
-          <Collapsible
-            onClick={() => {
-              datadogRum.addAction("faqItemClicked", {
-                faqItemClicked: {
-                  question: "What happens on the 21st day?",
-                  answer: "",
-                },
-              });
-            }}
-            content={
-              <p className="text-start text-[16px] text-tertiary font-bold">
-                We're really glad you asked 😎 <br />
-                <br />
-                If you're up for another fun challenge...
-                <u
-                  onClick={() => {
-                    setMode();
-                    // setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 10);
-                    datadogRum.addAction("unplugNavEvent");
-                  }}
-                >
-                  This is what happens
-                </u>
-              </p>
-            }
-            header={
-              <div className="">
-                <li>
-                  <p className="text-start text-[16px]">🎉 What happens on the 21st day?</p>
-                </li>
-              </div>
-            }
-          />
-          {QuestionsAndAnswers.map((qa) => (
-            <FAQItem key={qa.question} question={qa.question} answer={qa.answer} />
-          ))}
-        </ul>
-      </Section>
+          <ul className="list-disc ml-0 marker:text-tertiary">
+            <Collapsible
+              onClick={() => {
+                datadogRum.addAction("faqItemClicked", {
+                  faqItemClicked: {
+                    question: "What happens on the 21st day?",
+                    answer: "",
+                  },
+                });
+              }}
+              content={
+                <p className="text-start text-[16px] text-tertiary font-bold ">
+                  We're really glad you asked 😎 <br />
+                  <br />
+                  If you're up for another fun challenge...
+                  <u
+                    className="cursor-pointer hover:bg-richBlack hover:text-highlight p-2 rounded-md transition-all duration-500"
+                    onClick={() => {
+                      setMode();
+                      // setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 10);
+                      datadogRum.addAction("unplugNavEvent");
+                    }}
+                  >
+                    This is what happens
+                  </u>
+                </p>
+              }
+              header={
+                <div className="">
+                  <li>
+                    <p className="text-start text-[16px]">🎉 What happens on the 21st day?</p>
+                  </li>
+                </div>
+              }
+            />
+            {QuestionsAndAnswers.map((qa) => (
+              <FAQItem key={qa.question} question={qa.question} answer={qa.answer} />
+            ))}
+          </ul>
+        </Section>
+      </div>
 
       <Section title="Questions?">
         Contact us at <code className="block font-bold text-primary text-xl p-4 ">questions@replug20.com</code>

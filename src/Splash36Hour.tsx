@@ -24,20 +24,23 @@ interface SplashProps {
 export const Splash36Hour: React.FC<SplashProps> = ({ setMode }) => {
   const [textCopied, setTextCopied] = useState(false);
   return (
-    <div className="px-4">
+    <div className="px-4 max-w-4xl mx-auto">
       <Header36Hour />
 
-      <div className="p-2 flex items-center">
-        <ArrowLeftIcon className="text-background w-6 h-6" />
-        <p onClick={() => setMode()} className="text-background">
+      <div className="p-2 flex items-center cursor-pointer text-background hover:text-accent transition-all">
+        <ArrowLeftIcon className=" w-6 h-6" />
+        <p onClick={() => setMode()} className="">
           Go back to Replug20
         </p>
       </div>
 
       <h3 className="text-highlight text-xl my-12 mx-8 font-bold">
         While the 20 day Replug detox is about curbing and reintegrating phone habits for long term change, this 36 hour
-        hiatus is about going entirely off the grid for a day and a half in a way that remains responsible and
-        reachable. Here's how
+        hiatus is about going entirely off the grid for a day and a half to reset in a way that remains responsible and
+        reachable.
+        <br />
+        <br />
+        No more excuses that "being available" is why you can't take a break from technology. Here's how to do it:
       </h3>
 
       <hr className="border-t border-background w-[90vw] left-0 mx-auto my-8" />
@@ -83,10 +86,10 @@ export const Splash36Hour: React.FC<SplashProps> = ({ setMode }) => {
 
       <p className="text-background text-sm opacity-50 mt-6">It should look something like this when you're done</p>
 
-      <div className="flex items-center justify-around w-full my-4">
-        <img src={messageScreenshot} className="w-[60vw] h-auto my-8" />
+      <div className="flex items-center justify-between w-full my-4">
+        <img src={messageScreenshot} className="w-[60vw] lg:w-[30vw] h-auto my-8" />
         <p
-          className="p-4 bg-richBlack text-background"
+          className="p-4 bg-richBlack text-background hover:text-highlight cursor-pointer rounded-lg"
           onClick={async () => {
             if (typeof window !== undefined) {
               window.navigator.clipboard.writeText(
@@ -114,7 +117,7 @@ export const Splash36Hour: React.FC<SplashProps> = ({ setMode }) => {
         title="2"
       />
 
-      <img src={drivingPic} className="w-[70vw] h-auto mx-auto my-8" />
+      <img src={drivingPic} className="w-[70vw] lg:w-[30vw]  h-auto mx-auto my-8" />
       <p className="text-background text-sm opacity-50 my-6">
         Now, you can ask a friend or family member to text you and ensure that a.) you don't get a ping and b.) they get
         the auto reply explaining what you are doing

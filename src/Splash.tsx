@@ -255,13 +255,17 @@ export const Splash: React.FC<SplashProps> = ({ markers, percentageOfScreenVerti
 
       <hr className="border-t-2 border-primary w-3/4 mx-auto my-8" />
 
-      <h3 className="text-secondary text-xl my-12 mx-16 font-bold">
-        Replug is about regaining agency over your <p className="inline text-primary">time</p> and{" "}
-        <p className="inline text-primary">mental health</p> by trading <p className="inline line-through">screens</p>{" "}
-        and <p className="inline line-through">notifications</p> for <b className="text-primary">presence</b> and
+      <h3 className="text-secondary text-xl my-12 mx-4 font-bold lg:max-w-xl lg:mx-auto">
+        Replug is about regaining agency <br />
+        over your <p className="inline text-primary">time</p> and <p className="inline text-primary">mental health</p>{" "}
+        <br />
+        by temporarily trading
+        <br /> <p className="inline line-through">screens</p> and <p className="inline line-through">notifications</p>{" "}
+        for <br />
+        <b className="text-primary">presence</b> and
         <b className="text-primary"> intention</b>. <br />
         <br />
-        Eliminate the noise for 20 days, and then with space, choose which habits you want to bring back.
+        Remove the noise for 20 days, and then with space, choose which habits you want to bring back.
       </h3>
 
       <hr className="border-t-2 border-primary w-3/4 mx-auto my-8" />

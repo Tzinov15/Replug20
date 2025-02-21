@@ -11,9 +11,12 @@ export const Header36Hour = () => {
           className={`flex flex-col  items-center justify-center w-full py-4 border-b border-b-primary border-opacity-50 `}
         >
           <img src={logo} className={`max-w-[90%] lg:max-w-[40%]`} />
-          <p className="text-background text-xl mt-6">
+          <p className="bg-gradient-to-r from-[#F5F1E0] to-[#E3C892] bg-clip-text text-transparent text-xl mt-6">
             A <p className="inline font-bold">36 hour technology hiatus.</p>
           </p>
+          {/* <p className="text-background text-xl mt-6">
+            A <p className="inline font-bold">36 hour technology hiatus.</p>
+          </p> */}
         </div>
       </header>
     </>
