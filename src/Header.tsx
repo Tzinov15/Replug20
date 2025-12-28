@@ -32,8 +32,8 @@ export const Header = () => {
         >
           <img src={logo} className={`max-w-[90%] lg:max-w-[40%]`} />
           <p className="text-primary text-xl mt-6">
-            A <p className="inline font-bold">20 day technology detox</p>
-            <br /> with <p className="inline font-bold text-accent">6 simple rules</p>
+            A <p className="inline font-bold">7 day technology detox</p>
+            <br /> with <p className="inline font-bold text-accent">7 simple rules</p>
           </p>
         </div>
       </header>
