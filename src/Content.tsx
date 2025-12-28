@@ -2,7 +2,6 @@ import { datadogRum } from "@datadog/browser-rum";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import { PropsWithChildren, useEffect, useRef, useState } from "react";
 
-import { Collapsible } from "./Collapsible";
 import { fireConfetti } from "./Components/confetti";
 import { FAQItem, QuestionsAndAnswers } from "./FAQItem";
 import { Splash } from "./Splash";
@@ -75,13 +74,13 @@ export const Rule = ({
           <div
             className={`flex items-center justify-center ${inverted ? "bg-accent text-highlight" : "bg-primary text-highlight"} rounded-full h-8 w-8 min-h-8 left-4 min-w-8 shadow-md active:shadow-sm active:scale-[0.96] transition-transform transition-shadow duration-150 cursor-pointer`}
           >
-            <b>{title}</b>
+            <b className="text-xs">{title}</b>
           </div>
         ) : null}
         <div
-          className={`${inverted ? "bg-highlight text-accent" : "bg-accent text-highlight"} ${title ? "ml-2" : ""} px-2 py-2 rounded-lg lg:min-h-10 relative flex items-center justify-center lg:justify-start w-full lg:w-full shadow-md active:shadow-sm active:scale-[0.98] transition-transform transition-shadow duration-150 cursor-pointer`}
+          className={`${inverted ? "bg-highlight text-accent" : "bg-accent text-highlight"} ${title ? "ml-2" : ""} px-2 py-2 rounded-lg lg:min-h-10 relative flex items-center justify-center lg:justify-start w-full lg:w-full shadow-[0_4px_7px_rgba(0,0,0,0.5)] active:shadow-[0_2px_6px_rgba(0,0,0,0.12)] active:scale-[0.98] transition-transform transition-shadow duration-150 cursor-pointer`}
         >
-          <p className="">{description}</p>
+          <p className="text-[14px]">{description}</p>
         </div>
       </div>
     </a>
@@ -447,7 +446,7 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
 
             <p className="text-sm text-gray-600 mt-2 mb-6">
               If you have an Android phone and are willing to provide us the steps to achieve this, reach out at
-              support@replug20.com
+              replug7challenge@gmail.com
             </p>
 
             <h3 className="text-primary font-bold text-lg mt-6 mb-4">
@@ -509,7 +508,7 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
               <Heading title="Pick a Start Date" />
               <strong id="stepnumber1" className="scroll-mt-20" />
               <p className="mt-4">
-                Look at your calendar, and decide when it makes most sense to start the 20 day detox. Keep in mind
+                Look at your calendar, and decide when it makes most sense to start the 7 day detox. Keep in mind
                 existing committiments that come into conflict with the rules. Pick a start date, mark it on your
                 calendar
               </p>
@@ -534,7 +533,8 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
                 {" "}
                 This is where it is likely you will get push back; people will say you're crazy, people will project
                 their own insecurities onto you, people will say you're being dramatic, people will say this is over the
-                top. This is normal. Stick to your guns and recognize you're doing something for yourself.{" "}
+                top, people will say you're being extreme. This is normal. Stick to your guns and recognize you're doing
+                something for yourself.{" "}
               </p>
               <br />
               <p>
@@ -585,40 +585,6 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
           <FAQHeading title="FAQ - [Work In Progress]" />
 
           <ul className="list-disc ml-0 marker:text-tertiary">
-            <Collapsible
-              onClick={() => {
-                datadogRum.addAction("faqItemClicked", {
-                  faqItemClicked: {
-                    question: "What happens on the 21st day?",
-                    answer: "",
-                  },
-                });
-              }}
-              content={
-                <p className="text-start text-[16px] text-tertiary font-bold ">
-                  We're really glad you asked 😎 <br />
-                  <br />
-                  If you're up for another fun challenge...
-                  <u
-                    className="cursor-pointer hover:bg-richBlack hover:text-highlight p-2 rounded-md transition-all duration-500"
-                    onClick={() => {
-                      setMode();
-                      // setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 10);
-                      datadogRum.addAction("unplugNavEvent");
-                    }}
-                  >
-                    This is what happens
-                  </u>
-                </p>
-              }
-              header={
-                <div className="">
-                  <li>
-                    <p className="text-start text-[16px]">🎉 What happens on the 21st day?</p>
-                  </li>
-                </div>
-              }
-            />
             {QuestionsAndAnswers.map((qa) => (
               <FAQItem key={qa.question} question={qa.question} answer={qa.answer} />
             ))}
@@ -627,8 +593,8 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
       </div>
 
       <Section title="Questions?">
-        Contact us at (except not yet because waiting on DNS){" "}
-        <code className="block font-bold text-primary text-xl p-4 ">questions@replug20.com</code>
+        Contact us at
+        <code className="block font-bold text-primary text-xl p-4 ">replug7challenge@gmail.com</code>
       </Section>
     </div>
   );

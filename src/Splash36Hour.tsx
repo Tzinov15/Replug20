@@ -35,7 +35,7 @@ export const Splash36Hour: React.FC<SplashProps> = ({ setMode }) => {
       </div>
 
       <h3 className="text-highlight text-xl my-12 mx-8 font-bold">
-        While the 20 day Replug detox is about curbing and reintegrating phone habits for long term change, this 36 hour
+        While the 7 day Replug detox is about curbing and reintegrating phone habits for long term change, this 36 hour
         hiatus is about going entirely off the grid for a day and a half to reset in a way that remains responsible and
         reachable.
         <br />
@@ -108,7 +108,7 @@ export const Splash36Hour: React.FC<SplashProps> = ({ setMode }) => {
 
       <p className="text-background text-sm opacity-50 mt-2 mb-6">
         If you have an Android phone and are willing to provide us the steps to achieve this, reach out at
-        support@replug20.com
+        replug7challenge@gmail.com
       </p>
 
       <Rule

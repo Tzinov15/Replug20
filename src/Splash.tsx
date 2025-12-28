@@ -309,6 +309,9 @@ export const Splash: React.FC<SplashProps> = ({
       <Header />
 
       <Section title="The Rules">
+        <p className="text-primary font-bold text-sm mt-4">
+          For the first <b className="font-bold text-accent">6 days:</b>
+        </p>
         <div className="grid grid-cols-1 lg:grid-cols-1 gap-0">
           <Rule
             anchor="#rulenumber1"
@@ -356,15 +359,10 @@ export const Splash: React.FC<SplashProps> = ({
               </>
             }
           />
-          <Rule
-            anchor="#rulenumber7"
-            title="7"
-            description={
-              <>
-                0 technology <b>Sunday</b>
-              </>
-            }
-          />
+          <p className="text-primary font-bold text-sm mt-4">
+            On the <b className="font-bold text-accent">7th day:</b>
+          </p>
+          <Rule anchor="#rulenumber7" title="7" description={<>No digital technology of any kind for 24 hours </>} />
         </div>
       </Section>
 
@@ -372,7 +370,7 @@ export const Splash: React.FC<SplashProps> = ({
 
       <h3 className="text-secondary text-xl my-12 mx-4 font-bold lg:max-w-xl lg:mx-auto">
         Replug is about regaining agency <br />
-        over your <p className="inline text-primary">time</p> and <p className="inline text-primary">mental health</p>{" "}
+        over our <p className="inline text-primary">time</p> and <p className="inline text-primary">mental health</p>{" "}
         <br />
         by temporarily trading
         <br /> <p className="inline line-through">screens</p> and <p className="inline line-through">notifications</p>{" "}
@@ -380,7 +378,10 @@ export const Splash: React.FC<SplashProps> = ({
         <b className="text-primary">presence</b> and
         <b className="text-primary"> intention</b>. <br />
         <br />
-        Remove the noise for 7 days, and then with space, choose which habits you want to bring back.
+        Remove the noise for 7 days, and then with space, choose which habits to bring back.
+        <br />
+        <br />
+        Think of it as the Whole30 equivalent for our screen time and our attention.
       </h3>
 
       <hr className="border-t-2 border-primary w-3/4 mx-auto my-8" />
