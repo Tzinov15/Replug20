@@ -1,9 +1,16 @@
 import { datadogRum } from "@datadog/browser-rum";
+import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import { PropsWithChildren, useEffect, useRef, useState } from "react";
 
 import { Collapsible } from "./Collapsible";
+import { fireConfetti } from "./Components/confetti";
 import { FAQItem, QuestionsAndAnswers } from "./FAQItem";
 import { Splash } from "./Splash";
+import drivingIcon from "./driving2.png";
+import drivingPic from "./driving.jpg";
+import focusIcon from "./focus2.png";
+import messageScreenshot from "./messageScreenshot.jpg";
+import settingsIcon from "./settings-icon.png";
 
 interface SectionProps extends PropsWithChildren {
   title: string;
@@ -81,6 +88,13 @@ export const Rule = ({
   );
 };
 
+interface IndicatorIconProps {
+  src: string;
+}
+const IndicatorIcon: React.FC<IndicatorIconProps> = ({ src }) => {
+  return <img src={src} className="min-w-10 min-h-10 max-w-10 max-h-10 w-10 h-10" />;
+};
+
 export const Content = ({ setMode }: { setMode: () => void }) => {
   const firstRuleRef = useRef<HTMLDivElement>(null);
   const secondRuleRef = useRef<HTMLDivElement>(null);
@@ -89,6 +103,8 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
   const fifthRuleRef = useRef<HTMLDivElement>(null);
   const sixthRuleRef = useRef<HTMLDivElement>(null);
   const seventhRuleRef = useRef<HTMLDivElement>(null);
+
+  const [textCopied, setTextCopied] = useState(false);
 
   const rulesSectionRef = useRef<HTMLDivElement>(null);
 
@@ -370,8 +386,8 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
             <strong id="rulenumber7" ref={seventhRuleRef} className="scroll-mt-20" />
             <Rule anchor="#rulenumber7" title="7" description={<>0 technology Sunday</>} />
             <p className="mt-8">
-              While the 20 day Replug detox is about curbing and reintegrating phone habits for long term change, this
-              36 hour hiatus is about going entirely off the grid for a day and a half to reset in a way that remains
+              While the 7 day Replug detox is about curbing and reintegrating phone habits for long term change, this 36
+              hour hiatus is about going entirely off the grid for a day and a half to reset in a way that remains
               responsible and reachable.
             </p>
             <br />
@@ -387,15 +403,49 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
               On iOS, this can be done by repurposing the Do Not Disturb Driving mode and changing the default
               auto-reply message.
             </p>
-            <p className="text-sm text-gray-600 mb-4">Go to: Settings → Focus → Driving → Auto-Reply</p>
-            <p className="mb-4">It should look something like this when you're done:</p>
-            <p className="p-4 bg-richBlack text-background rounded-lg mb-4">
-              Hi! You've reached me on a day where I'm taking a break from technology for 36 hours. Feel free to call,
-              I'd love to chat and will pick up, otherwise I won't see your text until Sunday at 8:00am and will get
-              back to you then. Thanks! 😎. If you're curious about what I'm doing and why, and want to learn more,
-              checkout https://replug20.com/tech-hiatus
-            </p>
-            <p className="text-sm text-gray-600 mb-6">
+
+            <div className="flex items-center justify-around w-full my-4">
+              <div className="flex flex-col items-center">
+                <IndicatorIcon src={settingsIcon} />
+                <p className="text-xs md:text-md my-1 text-gray-700">Settings</p>
+              </div>
+              <ArrowRightIcon className="text-primary w-4 h-4" />
+              <div className="flex flex-col items-center">
+                <IndicatorIcon src={focusIcon} />
+                <p className="font-bold text-xs md:text-md my-1 text-primary">Focus</p>
+              </div>
+              <ArrowRightIcon className="text-primary w-4 h-4" />
+              <div className="flex flex-col items-center">
+                <IndicatorIcon src={drivingIcon} />
+                <p className="text-xs md:text-md my-1 text-gray-700">Driving</p>
+              </div>
+              <ArrowRightIcon className="text-primary w-4 h-4" />
+              <p className="bg-accent text-highlight p-4 rounded-lg">Auto-Reply</p>
+            </div>
+
+            <p className="text-sm text-gray-600 mt-6 mb-4">It should look something like this when you're done:</p>
+
+            <div className="flex flex-col lg:flex-row items-center justify-between w-full my-4 gap-4">
+              <img src={messageScreenshot} className="w-[60vw] lg:w-[30vw] h-auto my-8" />
+              <p
+                className="p-4 bg-richBlack text-background hover:text-highlight cursor-pointer rounded-lg"
+                onClick={async () => {
+                  if (typeof window !== "undefined") {
+                    window.navigator.clipboard.writeText(
+                      `Hi! You've reached me on a day where I'm taking a break from technology for 36 hours. Feel free to call, I'd love to chat and will pick up, otherwise I won't see your text until Sunday at 8:00am and will get back to you then. Thanks! 😎. If you're curious about what I'm doing and why, and want to learn more, checkout https://replug20.com/tech-hiatus`,
+                    );
+                    fireConfetti({ colors: ["#E3C892", "#F5F1E0"], duration: 0.1, particleCount: 50 });
+                    setTextCopied(true);
+                    setTimeout(() => setTextCopied(false), 3000);
+                    datadogRum.addAction("autoReplyMessageCopied");
+                  }
+                }}
+              >
+                {textCopied ? "Copied!" : "Copy this message"}
+              </p>
+            </div>
+
+            <p className="text-sm text-gray-600 mt-2 mb-6">
               If you have an Android phone and are willing to provide us the steps to achieve this, reach out at
               support@replug20.com
             </p>
@@ -403,6 +453,7 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
             <h3 className="text-primary font-bold text-lg mt-6 mb-4">
               2. Enable Driving Mode so that all inbound messages get this auto response
             </h3>
+            <img src={drivingPic} className="w-[70vw] lg:w-[30vw] h-auto mx-auto my-8" />
             <p className="mb-4">
               Now, you can ask a friend or family member to text you and ensure that a.) you don't get a ping and b.)
               they get the auto reply explaining what you are doing.
