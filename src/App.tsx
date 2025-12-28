@@ -19,7 +19,7 @@ if (import.meta.env.PROD) {
     // `site` refers to the Datadog site parameter of your organization
     // see https://docs.datadoghq.com/getting_started/site/
     site: "datadoghq.com",
-    service: "replug20",
+    service: "replug7",
     env: "<ENV_NAME>",
     // Specify a version number to identify the deployed version of your application in Datadog
     // version: '1.0.0',

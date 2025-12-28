@@ -12,6 +12,7 @@ const RuleLight = ({
   anchor,
   onClick,
   scrolledPast,
+  inverted = false,
 }: {
   title: string;
   description: React.ReactNode;
@@ -19,17 +20,18 @@ const RuleLight = ({
   anchor: string;
   onClick?: () => void;
   scrolledPast?: boolean;
+  inverted?: boolean;
 }) => {
   return (
     <a className="block" href={anchor} onClick={onClick}>
       <div className="w-full flex items-center">
         <div
-          className={`flex items-center justify-center mr-1  ${scrolledPast ? "bg-secondary text-woodland-400" : "bg-primary text-highlight"} transition-all duration-500 rounded-full h-6 w-6 min-h-6 left-4 min-w-6`}
+          className={`flex items-center justify-center mr-1  ${inverted ? (scrolledPast ? "bg-accent text-highlight" : "bg-accent text-highlight") : scrolledPast ? "bg-secondary text-woodland-400" : "bg-primary text-highlight"} transition-all duration-500 rounded-full h-6 w-6 min-h-6 left-4 min-w-6`}
         >
           <b className="text-xs">{title}</b>
         </div>{" "}
         <div
-          className={`transition-all duration-500 ${scrolledPast ? "text-accent" : "text-primary"} rounded-lg text-sm font-extrabold  lg:min-h-10 flex items-center justify-start lg:justify-start w-full lg:w-full`}
+          className={`transition-all duration-500 ${inverted ? (scrolledPast ? "bg-highlight text-accent" : "bg-highlight text-accent") : scrolledPast ? "text-accent" : "text-primary"} ${inverted ? "px-2 py-1 rounded-lg" : ""} rounded-lg text-sm font-extrabold  lg:min-h-10 flex items-center justify-start lg:justify-start w-full lg:w-full`}
         >
           <p className="">{description}</p>
         </div>
@@ -76,7 +78,7 @@ const Accordion: React.FC<AccordionProps> = ({ percentScrolled, markers }) => {
             scrolledPast={percentScrolled > markers[0].percentageDownThePage}
             anchor="#rulenumber1"
             title="1"
-            description="No screens within 60 minutes"
+            description="No screens within 60 minutes of waking up"
             onClick={closeAccordion}
           />
           <RuleLight
@@ -112,6 +114,13 @@ const Accordion: React.FC<AccordionProps> = ({ percentScrolled, markers }) => {
             anchor="#rulenumber6"
             title="6"
             description="No screens within 60 minutes of bedtime"
+            onClick={closeAccordion}
+          />
+          <RuleLight
+            scrolledPast={percentScrolled > markers[6].percentageDownThePage}
+            anchor="#rulenumber7"
+            title="7"
+            description="0 technology Sunday"
             onClick={closeAccordion}
           />
         </div>
@@ -208,7 +217,7 @@ const FloatingDesktopNav = ({
               scrolledPast={percentScrolled > markers[0].percentageDownThePage}
               anchor="#rulenumber1"
               title="1"
-              description="No screens within 60 minutes"
+              description="No screens within 60 minutes of waking up"
             />
             <RuleLight
               scrolledPast={percentScrolled > markers[1].percentageDownThePage}
@@ -239,6 +248,12 @@ const FloatingDesktopNav = ({
               anchor="#rulenumber6"
               title="6"
               description="No screens within 60 minutes of bedtime"
+            />
+            <RuleLight
+              scrolledPast={percentScrolled > markers[6].percentageDownThePage}
+              anchor="#rulenumber7"
+              title="7"
+              description="0 technology Sunday"
             />
           </>
         )}
@@ -341,6 +356,15 @@ export const Splash: React.FC<SplashProps> = ({
               </>
             }
           />
+          <Rule
+            anchor="#rulenumber7"
+            title="7"
+            description={
+              <>
+                0 technology <b>Sunday</b>
+              </>
+            }
+          />
         </div>
       </Section>
 
@@ -356,7 +380,7 @@ export const Splash: React.FC<SplashProps> = ({
         <b className="text-primary">presence</b> and
         <b className="text-primary"> intention</b>. <br />
         <br />
-        Remove the noise for 20 days, and then with space, choose which habits you want to bring back.
+        Remove the noise for 7 days, and then with space, choose which habits you want to bring back.
       </h3>
 
       <hr className="border-t-2 border-primary w-3/4 mx-auto my-8" />

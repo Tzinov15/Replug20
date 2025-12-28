@@ -47,11 +47,13 @@ export const Rule = ({
   title,
   description,
   anchor,
+  inverted = false,
 }: {
   anchor: string;
   title?: string;
   description: React.ReactNode;
   content?: React.ReactNode;
+  inverted?: boolean;
 }) => {
   return (
     <a
@@ -63,12 +65,14 @@ export const Rule = ({
     >
       <div className="w-full flex items-center my-[6px] ">
         {title ? (
-          <div className="flex items-center justify-center  bg-primary text-highlight rounded-full h-8 w-8 min-h-8 left-4 min-w-8">
+          <div
+            className={`flex items-center justify-center ${inverted ? "bg-accent text-highlight" : "bg-primary text-highlight"} rounded-full h-8 w-8 min-h-8 left-4 min-w-8 shadow-md active:shadow-sm active:scale-[0.96] transition-transform transition-shadow duration-150 cursor-pointer`}
+          >
             <b>{title}</b>
           </div>
         ) : null}
         <div
-          className={`bg-accent ${title ? "ml-2" : ""} px-2 py-2 rounded-lg text-highlight lg:min-h-10 relative flex items-center justify-center lg:justify-start w-full lg:w-full`}
+          className={`${inverted ? "bg-highlight text-accent" : "bg-accent text-highlight"} ${title ? "ml-2" : ""} px-2 py-2 rounded-lg lg:min-h-10 relative flex items-center justify-center lg:justify-start w-full lg:w-full shadow-md active:shadow-sm active:scale-[0.98] transition-transform transition-shadow duration-150 cursor-pointer`}
         >
           <p className="">{description}</p>
         </div>
@@ -84,6 +88,7 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
   const fourthRuleRef = useRef<HTMLDivElement>(null);
   const fifthRuleRef = useRef<HTMLDivElement>(null);
   const sixthRuleRef = useRef<HTMLDivElement>(null);
+  const seventhRuleRef = useRef<HTMLDivElement>(null);
 
   const rulesSectionRef = useRef<HTMLDivElement>(null);
 
@@ -93,6 +98,7 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
   const fourthRulePercentageOfPageDown = (fourthRuleRef.current?.offsetTop || 0) / document.body.scrollHeight;
   const fifthRulePercentageOfPageDown = (fifthRuleRef.current?.offsetTop || 0) / document.body.scrollHeight;
   const sixthRulePercentageOfPageDown = (sixthRuleRef.current?.offsetTop || 0) / document.body.scrollHeight;
+  const seventhRulePercentageOfPageDown = (seventhRuleRef.current?.offsetTop || 0) / document.body.scrollHeight;
 
   const stepsSectionRef = useRef<HTMLDivElement>(null);
 
@@ -129,6 +135,7 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
     { title: "4", percentageDownThePage: fourthRulePercentageOfPageDown },
     { title: "5", percentageDownThePage: fifthRulePercentageOfPageDown },
     { title: "6", percentageDownThePage: sixthRulePercentageOfPageDown },
+    { title: "7", percentageDownThePage: seventhRulePercentageOfPageDown },
   ];
 
   return (
@@ -233,7 +240,7 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
 
             <br />
             <p>
-              Over these 20 days, use meals as a time to pause, recharge, and reconnect—with your food, your thoughts,
+              Over these 7 days, use meals as a time to pause, recharge, and reconnect—with your food, your thoughts,
               and the present moment.
             </p>
           </div>
@@ -243,7 +250,7 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
             <strong id="rulenumber3" ref={thirdRuleRef} className="scroll-mt-20" />
             <Rule anchor="#rulenumber3" title="3" description={<>No notifications except calls, messages, work</>} />
             <p className="mt-8">
-              Treat these 20 days as an experiment in reducing notification overload and relaxing in longer periods of
+              Treat these 7 days as an experiment in reducing notification overload and relaxing in longer periods of
               uninterrupted time.
             </p>
             <br />
@@ -337,7 +344,7 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
             </p>
             <br />
             <p>
-              Treat these 20 days as an opportunity to drop in and start noticing what triggers pull out the screen, and
+              Treat these 7 days as an opportunity to drop in and start noticing what triggers pull out the screen, and
               why.
             </p>
           </div>
@@ -356,6 +363,89 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
               day, take a bath, emotionally regulate, and slow down. We so often pile up anxiety throughout the day from
               work stressors, life stressors, and todo-lists and rarely step off the hamster wheel.
             </p>
+          </div>
+
+          <hr className="border-t-2 border-primary w-3/4 mx-auto my-8" />
+          <div className="text-left mx-auto max-w-2xl">
+            <strong id="rulenumber7" ref={seventhRuleRef} className="scroll-mt-20" />
+            <Rule anchor="#rulenumber7" title="7" description={<>0 technology Sunday</>} />
+            <p className="mt-8">
+              While the 20 day Replug detox is about curbing and reintegrating phone habits for long term change, this
+              36 hour hiatus is about going entirely off the grid for a day and a half to reset in a way that remains
+              responsible and reachable.
+            </p>
+            <br />
+            <p>
+              No more excuses that "being available" is why you can't take a break from technology. Here's how to do it:
+            </p>
+            <br />
+
+            <h3 className="text-primary font-bold text-lg mt-6 mb-4">
+              1. Setup an Auto Reply message so that others get notified that you're off the grid
+            </h3>
+            <p className="mb-4">
+              On iOS, this can be done by repurposing the Do Not Disturb Driving mode and changing the default
+              auto-reply message.
+            </p>
+            <p className="text-sm text-gray-600 mb-4">Go to: Settings → Focus → Driving → Auto-Reply</p>
+            <p className="mb-4">It should look something like this when you're done:</p>
+            <p className="p-4 bg-richBlack text-background rounded-lg mb-4">
+              Hi! You've reached me on a day where I'm taking a break from technology for 36 hours. Feel free to call,
+              I'd love to chat and will pick up, otherwise I won't see your text until Sunday at 8:00am and will get
+              back to you then. Thanks! 😎. If you're curious about what I'm doing and why, and want to learn more,
+              checkout https://replug20.com/tech-hiatus
+            </p>
+            <p className="text-sm text-gray-600 mb-6">
+              If you have an Android phone and are willing to provide us the steps to achieve this, reach out at
+              support@replug20.com
+            </p>
+
+            <h3 className="text-primary font-bold text-lg mt-6 mb-4">
+              2. Enable Driving Mode so that all inbound messages get this auto response
+            </h3>
+            <p className="mb-4">
+              Now, you can ask a friend or family member to text you and ensure that a.) you don't get a ping and b.)
+              they get the auto reply explaining what you are doing.
+            </p>
+
+            <h3 className="text-primary font-bold text-lg mt-6 mb-4">
+              3. Turn on ringer on loud and keep phone on you at all times to stay reachable for emergencies
+            </h3>
+            <p className="mb-4">
+              Despite going "off the grid", this is the most important step to being able to do something like an Unplug
+              day without stressing out anyone who might need to reach you in an emergency (friends, loved ones, etc).
+            </p>
+            <br />
+            <p className="mb-4">
+              Should you <i>need</i> to be reached, you're available, otherwise, you now have the greenlight to not
+              check your phone or light it up a single time for the next 36 hours.
+            </p>
+
+            <h3 className="text-primary font-bold text-lg mt-6 mb-4">
+              4. Go the next 36 hours with no TV, no phone, no tablets, no smart watches, no video games, etc
+            </h3>
+            <p className="mb-4">
+              Just about anything - cooking something new, going for a walk, meditating, taking a nap, reading a book,
+              organizing your closet, donating clothes, driving to a park, etc - is fair game. The only rule is that it
+              can't involve a screen or a screen-like device.
+            </p>
+
+            <div className="mt-8">
+              <h3 className="text-primary font-bold text-xl mb-4">Some Tips</h3>
+              <p className="mb-4">
+                Going 36 hours without any kind of screens requires a good amount of prep ahead of time. Here are some
+                things that have helped us in the past:
+              </p>
+              <ul className="list-disc ml-4 marker:text-primary">
+                <li className="mb-2">Printing out recipes ahead of time</li>
+                <li className="mb-2">Printing out driving instructions ahead of time</li>
+                <li className="mb-2">
+                  Coordinating with any plans and letting them know to call for changes in plans, otherwise you will
+                  show up at the arranged time & place
+                </li>
+                <li className="mb-2">Tell friends and family ahead of time</li>
+              </ul>
+            </div>
           </div>
         </Section>
       </div>
@@ -407,7 +497,7 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
               <Heading title="Identify your Why" />
               <strong id="stepnumber4" className="scroll-mt-20" />
               <p className="mt-4">
-                As confident as we are in how transformative these 20 days will be, we are equally as confident in their
+                As confident as we are in how transformative these 7 days will be, we are equally as confident in their
                 challenging nature.{" "}
               </p>
               <br />
@@ -429,7 +519,7 @@ export const Content = ({ setMode }: { setMode: () => void }) => {
               <p className="mt-4">
                 Make a commitment to your future self - the future self that could be slightly less anxious, slightly
                 more present, and slightly more intentional - that you will try your best to follow these 6 rules over
-                the next 20 days.
+                the next 7 days.
               </p>
               <br />
             </div>

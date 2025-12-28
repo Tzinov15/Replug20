@@ -9,7 +9,7 @@ export const QuestionsAndAnswers = [
       "We recommend using other forms of communication like texting, calling, or meeting in person. You can also use apps like WhatsApp or Signal to stay in touch with friends and family.",
   },
   {
-    question: "Why 20 days?",
+    question: "Why 7 days?",
     answer: "",
   },
   {
