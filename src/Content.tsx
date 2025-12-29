@@ -94,7 +94,7 @@ const IndicatorIcon: React.FC<IndicatorIconProps> = ({ src }) => {
   return <img src={src} className="min-w-10 min-h-10 max-w-10 max-h-10 w-10 h-10" />;
 };
 
-export const Content = ({ setMode }: { setMode: () => void }) => {
+export const Content = () => {
   const firstRuleRef = useRef<HTMLDivElement>(null);
   const secondRuleRef = useRef<HTMLDivElement>(null);
   const thirdRuleRef = useRef<HTMLDivElement>(null);

@@ -51,7 +51,7 @@ export const App = () => {
   }, [mode]);
 
   if (mode === "20day") {
-    return <Content setMode={() => setMode("36hour")} />;
+    return <Content />;
   } else {
     return <Content36Hour setMode={() => setMode("20day")} />;
   }
