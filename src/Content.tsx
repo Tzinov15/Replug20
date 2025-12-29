@@ -417,7 +417,7 @@ export const Content = () => {
           <hr className="border-t-2 border-primary w-3/4 mx-auto my-8" />
           <div className="text-left mx-auto max-w-2xl">
             <strong id="rulenumber7" ref={seventhRuleRef} className="scroll-mt-20" />
-            <Rule anchor="#rulenumber7" title="7" description={<>0 technology Sunday</>} />
+            <Rule anchor="#rulenumber7" title="7" description={<>No digital technology for 24 hours</>} />
             <p className="mt-8">
               While the 7 day Replug detox is about curbing and reintegrating phone habits for long term change, this 36
               hour hiatus is about going entirely off the grid for a day and a half to reset in a way that remains

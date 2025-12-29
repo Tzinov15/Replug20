@@ -120,7 +120,7 @@ const Accordion: React.FC<AccordionProps> = ({ percentScrolled, markers }) => {
             scrolledPast={percentScrolled > markers[6].percentageDownThePage}
             anchor="#rulenumber7"
             title="7"
-            description="0 technology Sunday"
+            description="No digital technology for 24 hours"
             onClick={closeAccordion}
           />
         </div>
@@ -253,7 +253,7 @@ const FloatingDesktopNav = ({
               scrolledPast={percentScrolled > markers[6].percentageDownThePage}
               anchor="#rulenumber7"
               title="7"
-              description="0 technology Sunday"
+              description="No digital technology for 24 hours"
             />
           </>
         )}
