@@ -49,17 +49,32 @@ const NotificationItem = ({ title, description }: { title: string; description: 
   );
 };
 
+export const Goal = ({ toRemove, toReplaceWith }: { toRemove: string; toReplaceWith: string }) => {
+  return (
+    <div className="bg-primary bg-opacity-20 p-4 rounded-md w-full flex flex-col items-start my-[12px] ">
+      <p className="text-lg text-primary font-bold mb-4">The Goal of This Rule</p>
+      <p>
+        🔌 From: <span className="line-through">{toRemove}</span>{" "}
+      </p>
+      <p>↓</p>
+      <p className="text-accent">🌲 To: {toReplaceWith}</p>
+    </div>
+  );
+};
+
 export const Rule = ({
   title,
   description,
   anchor,
   inverted = false,
+  jumboSized = false,
 }: {
   anchor: string;
   title?: string;
   description: React.ReactNode;
   content?: React.ReactNode;
   inverted?: boolean;
+  jumboSized?: boolean;
 }) => {
   return (
     <a
@@ -80,7 +95,7 @@ export const Rule = ({
         <div
           className={`${inverted ? "bg-highlight text-accent" : "bg-accent text-highlight"} ${title ? "ml-2" : ""} px-2 py-2 rounded-lg lg:min-h-10 relative flex items-center justify-center lg:justify-start w-full lg:w-full shadow-[0_4px_7px_rgba(0,0,0,0.5)] active:shadow-[0_2px_6px_rgba(0,0,0,0.12)] active:scale-[0.98] transition-transform transition-shadow duration-150 cursor-pointer`}
         >
-          <p className="text-[14px]">{description}</p>
+          <p className={`${jumboSized ? "text-[18px]" : "text-[14px]"}`}>{description}</p>
         </div>
       </div>
     </a>
@@ -166,6 +181,7 @@ export const Content = () => {
           <div className="text-left mx-auto max-w-2xl">
             <strong id="rulenumber1" ref={firstRuleRef} className="scroll-mt-20" />
             <Rule
+              jumboSized
               title="1"
               anchor="#rulenumber1"
               description={
@@ -174,13 +190,32 @@ export const Content = () => {
                 </>
               }
             />
-            <p className="mt-8">Treat the first 60 minutes of your day as sacred and intentional.</p>
+            <p className="mt-8">Protect the first 60 minutes of your day</p>
             <br />
-            <p>
+            <p className="text-[14px] leading-7">
+              Let's imagine a game. In this game - which I'll call{" "}
+              <b className="text-accent font-extrabold  ">Emotional Roulette 🎰</b> - every spin of the ball results in
+              a random set of pleasant or unpleasant emotions that flood your system. You don't have control over these
+              emotions, they tend to linger, and your motivation, inspiration, and excitement for the day are closely
+              connected to where the ball landed. You're at the whim of the universe with every roll. Some rolls are
+              good, some are not, and at best your odds are 50%.
+              <br />
+              <br />
+              For those of us that check our phones immediately after waking up - we're playing Emotional Roulette every
+              single morning. We hand over the freshness of a new day to the dealer behind the roulette table, and do so
+              willingly. Sit and think about it and you'll see it's one of more self-mashochistic things we choose to
+              do.
+              <br />
+              <br />
+              <Goal
+                toRemove="Leaving our emotional state to the whim of the internet"
+                toReplaceWith="Intentionally starting the day on our terms"
+              />
               The following types of notifications / content that are often consumed first thing in the morning can
-              negatively influence your mood and set the tone for the day. While they are fine - and sometimes
-              neccessary - to consume throughout the day, there is no need to subject the fresh start of a new day to
-              emotions wrapped up in this content. This is why for the first 60 minutes, we are removing:
+              negatively influence your mood and set the tone for the day. While they are fine - and often neccessary -
+              to consume throughout the day (during which they are allowed for this challenge), there is no need to
+              subject the fresh start of a new day to emotions wrapped up in this content. This is why for the first 60
+              minutes, we are removing:
             </p>
             <ul>
               <NotificationItem title="News" description="Often provokes anxiety, despair, or rage" />
@@ -214,15 +249,15 @@ export const Content = () => {
                 description="Encourages a cycle of dopamine-driven and instant gratification-seeking behaviors"
               />
 
-              <p>
+              <p className="text-[14px] leading-7">
                 While many of the above notifications can induce positive emotions - your favorite team winning a game,
                 a text from a long ago friend, a bonus at work - they are not predictable, and the goal with this rule
                 is to take ownership over how our day starts.
               </p>
               <br />
-              <p>
+              <p className="text-[14px] leading-7">
                 Instead one can go on an early morning walk, do yoga, cook a meal for later in the day, journal or read
-                a book.
+                a book, organize a kitchen drawer, take care of house chores, slowly sip coffee, etc.
               </p>
             </ul>
           </div>
@@ -230,33 +265,36 @@ export const Content = () => {
           <hr className="border-t-2 border-primary w-3/4 mx-auto my-8" />
           <div className="text-left mx-auto max-w-2xl">
             <strong id="rulenumber2" ref={secondRuleRef} className="scroll-mt-20" />
-            <Rule anchor="#rulenumber2" title="2" description={<>No screens during meals</>} />
-            <p className="mt-8">
-              Treat each meal as an opportunity to slow down and surface from the rush that is constantly being "on" all
-              the time.
+            <Rule jumboSized anchor="#rulenumber2" title="2" description={<>No screens during meals</>} />
+            <p className="mt-8">Come up for air during your meals</p>
+            <br />
+            <p className="text-[14px] leading-7">
+              Treat each meal as an opportunity to slow down and take a breath from constantly being "on" all the time.
             </p>
             <br />
-            {/* <p>
-                  There’s an old Zen saying: “If you don’t have time to meditate for five minutes, you should sit and meditate
-                  for two hours.”
-                </p> */}
-            <p>
-              Idle time sitting in presence without a distraction will initially be anxiety provoking, but once you come
-              out the other side, see if you can approach what comes up within you with curiosity and compassion.
+            <p className="text-[14px] leading-7">
+              Eating without a screen at first is going to feel weird as shit. Trust me, it won't be really fun and it
+              will feel like time is dragging at a snails pace.
             </p>
             <br />
 
-            <p>
+            <p className="text-[14px] leading-7">
               {" "}
               Setting aside 15–20 minutes for a screen-free meal can feel impossible, especially in a world and age
-              where down time is seen as wasted or eating alone is uncomfortable, yet it is one of the most available
-              moments we have to pause and connect with ourselves.
+              where down time is seen as wasted or eating alone is uncomfortable. And at the same time, unless every day
+              our meals are 3 smoothies pounded in 10 seconds and that's it in which case we should probably have a
+              separate convo, we <i>have to sit down and eat</i> at some point which means we{" "}
+              <i>have the time to slow down.</i>
+              <Goal
+                toRemove="Continuing the go-go-go multitasking rush through meals"
+                toReplaceWith="Getting to slow down while eating and letting ourselves check in"
+              />
             </p>
 
             <br />
-            <p>
-              Over these 7 days, use meals as a time to pause, recharge, and reconnect—with your food, your thoughts,
-              and the present moment.
+            <p className="text-[14px] leading-7">
+              We never said this would be an easy 7 days, but we're pretty confident you'll learn something during the
+              down time during meals from just sitting.
             </p>
           </div>
 
@@ -264,18 +302,14 @@ export const Content = () => {
           <div className="text-left mx-auto max-w-2xl">
             <strong id="rulenumber3" ref={thirdRuleRef} className="scroll-mt-20" />
             <Rule anchor="#rulenumber3" title="3" description={<>No notifications except calls, messages, work</>} />
-            <p className="mt-8">
-              Treat these 7 days as an experiment in reducing notification overload and relaxing in longer periods of
-              uninterrupted time.
-            </p>
+            <p className="mt-8">Turning down the radio noise</p>
             <br />
-            <p>
+            <p className="text-[14px] leading-7">
               We are as connected as ever, and yet often as anxious as we've ever been, as unable to focus as we've ever
-              been, and as irritable as we've ever been. Free yourself from the constant chatter and regain a sense of
-              calm.
+              been, and as irritable as we've ever been. calm.
             </p>
             <br />
-            <p>
+            <p className="text-[14px] leading-7">
               Try to utilize Do Not Disturb more often and try to batch how often you check and respond to messages so
               that instead of reacting in the moment to every message, you can proactively choose when to engage and
               respond.
@@ -293,7 +327,7 @@ export const Content = () => {
               forever.
             </p>
             <br />
-            <p>
+            <p className="text-[14px] leading-7">
               Much like the slot machines of Vegas, every refresh, every flick of the thumb, every new app provides new
               stimulation, and is thus incredibly consuming and addicting. The goal here is to entirely eliminate any
               apps that have the concept of "infinitely providing new content".
@@ -308,14 +342,14 @@ export const Content = () => {
             <NotificationItem title="Entertainment" description="9GAG / iFunny / Imgur / YouTube Shorts / YouTube" />
             <NotificationItem title="Shopping" description="Amazon / Groupon / Wayfair" />
             <NotificationItem title="Dating Apps" description="Hinge / Tinder / Bumble" />
-            <p>
+            <p className="text-[14px] leading-7">
               Often times when faced with an uncomfortable state of being - boredom, angst, anxiety, stress, fatigue,
               etc - one of our go to coping mechanisms is the endless set of dopamine that infinite scroll provides. So
               often it doesn't matter <i>what</i> it is that we consume, as long as it is novel and new - something all
               of the above apps are designed to provide.
             </p>
             <br />
-            <p>
+            <p className="text-[14px] leading-7">
               For this reason, we are with one-fell-swoop removing <i>all</i> such sources of numbing to return to
               ourselves and our experience instead.
             </p>
@@ -343,12 +377,12 @@ export const Content = () => {
               <li>Opening your phone as soon as the commercial break starts</li>
             </ul>
             <br />
-            <p>
+            <p className="text-[14px] leading-7">
               Replug is about regaining our agency over our time. Every time we let an idle moment drive us to pull out
               our phones, we are letting our attention and presence get hijacked by an external force.
             </p>
             <br />
-            <p>
+            <p className="text-[14px] leading-7">
               An important thing to note about this rule:{" "}
               <b className="text-primary">
                 it is highly, highly likely that you will slip up on at least one occasion, especially in the beginning,
@@ -358,7 +392,7 @@ export const Content = () => {
               and modify cycle of this habit, and that's ok.
             </p>
             <br />
-            <p>
+            <p className="text-[14px] leading-7">
               Treat these 7 days as an opportunity to drop in and start noticing what triggers pull out the screen, and
               why.
             </p>
@@ -373,10 +407,10 @@ export const Content = () => {
               engagement to carve out a sanctuary of an evening before bed.
             </p>
             <br />
-            <p>
+            <p className="text-[14px] leading-7">
               Use this time instead to connect with family or partners, journal, stretch, set intentions for the next
-              day, take a bath, emotionally regulate, and slow down. We so often pile up anxiety throughout the day from
-              work stressors, life stressors, and todo-lists and rarely step off the hamster wheel.
+              day, take a bath, calm down, and slow down. We so often pile up anxiety throughout the day from work
+              stressors, life stressors, and todo-lists and rarely step off the hamster wheel.
             </p>
           </div>
 
@@ -390,7 +424,7 @@ export const Content = () => {
               responsible and reachable.
             </p>
             <br />
-            <p>
+            <p className="text-[14px] leading-7">
               No more excuses that "being available" is why you can't take a break from technology. Here's how to do it:
             </p>
             <br />
@@ -537,19 +571,12 @@ export const Content = () => {
                 something for yourself.{" "}
               </p>
               <br />
-              <p>
-                <i className="text-primary font-bold">
-                  "Whenever you find yourself on the side of the majority, it is time to pause and reflect"
-                </i>{" "}
-                <p className="inline ml-2">- Mark Twain</p>
-              </p>
               <br />
 
               <Heading title="Identify your Why" />
               <strong id="stepnumber4" className="scroll-mt-20" />
               <p className="mt-4">
-                As confident as we are in how transformative these 7 days will be, we are equally as confident in their
-                challenging nature.{" "}
+                This is going to suck. Hard. Our phone habits are so deeply wired that there is no slow tapering off.
               </p>
               <br />
               <p>

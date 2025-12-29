@@ -368,8 +368,31 @@ export const Splash: React.FC<SplashProps> = ({
 
       <hr className="border-t-2 border-primary w-3/4 mx-auto my-8" />
 
-      <h3 className="text-secondary text-xl my-12 mx-4 font-bold lg:max-w-xl lg:mx-auto">
-        Replug is about regaining agency <br />
+      <h3 className="text-secondary text-lg my-12 mx-4 font-bold lg:max-w-xl lg:mx-auto">
+        So what's this Replug thing about?
+        <br />
+        <br />
+        At it's core, Replug is an <i>experiment. </i>It's an idea - a passion project - that's been burning a hole in
+        my pocket for years and has finally fallen out.
+        <br />
+        <br />I have no idea if this will work. It's a shot in the dark. You're the one that get's to let me know.{" "}
+        <br />
+        <br />
+        What I <i>do</i> know, is that I care{" "}
+        <b>
+          <i>a lot</i>
+        </b>{" "}
+        about how we spend our time on Earth.
+        <br />
+        <br />
+        What I <i>do</i> know, is that as humans we seem to be disconnected and lonely as shit despite being, well, so
+        connected.
+        <br />
+        <br />
+        What I <i>do</i> know, is that these rules helped <i>me</i> a lot of.
+        <br />
+        <br />I share openly with no expectations, and only the utmost hope they can help you as well.
+        {/* about regaining agency <br />
         over our <p className="inline text-primary">time</p> and <p className="inline text-primary">mental health</p>{" "}
         <br />
         by temporarily trading
@@ -380,8 +403,12 @@ export const Splash: React.FC<SplashProps> = ({
         <br />
         Remove the noise for 7 days, and then with space, choose which habits to bring back.
         <br />
+        <br /> */}
+        <br />
         <br />
         Think of it as the Whole30 equivalent for our screen time and our attention.
+        <br />
+        <br />
       </h3>
 
       <hr className="border-t-2 border-primary w-3/4 mx-auto my-8" />

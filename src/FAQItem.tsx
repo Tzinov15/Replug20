@@ -42,6 +42,11 @@ export const QuestionsAndAnswers = [
     answer:
       "If you need to be on Slack for work, you can set up notifications for important messages and calls. You can also schedule specific times to check Slack and limit your overall screen time.",
   },
+  {
+    question:
+      "I hate waking up early. Not checking my phone for a whole hour requires I wake up even earlier. What do I do?",
+    answer: "A real concern",
+  },
 ];
 
 export const FAQItem = ({ question, answer }: { question: string; answer: string }) => {
